@@ -1527,6 +1527,7 @@
                 return;
             }
 
+            if (mode === 'both') clientContainer.before(adminContainer);
             const showAdmin = mode === 'admin' || mode === 'both';
             const showClient = mode === 'client' || mode === 'both';
             adminContainer.classList.toggle('hidden', !showAdmin);
