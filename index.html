@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SROne Studio | Excel Solutions, Web, App & Logo Design Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #090d16;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #818cf8 0%, #38bdf8 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.22) 0%, rgba(14, 165, 233, 0.1) 40%, rgba(9, 13, 22, 0) 75%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        .service-card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
+
+    <!-- Top Notification / Announcement Bar -->
+    <div class="bg-gradient-to-r from-indigo-900/80 via-slate-900 to-emerald-900/80 border-b border-white/10 text-xs sm:text-sm py-2 px-4 text-center">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 text-slate-200">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-medium text-xs border border-emerald-500/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Fast Delivery
+            </span>
+            <span>Excel Data Cleaning, Web Development, Mobile Apps & Custom Logos — <strong>Post your requirement below & get started within 30 mins!</strong></span>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="#" onclick="switchMode('client')" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 via-blue-500 to-emerald-400 p-0.5 shadow-lg shadow-indigo-500/20">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i data-lucide="layers" class="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-xl tracking-tight text-white">SROne<span class="text-indigo-400">Studio</span></span>
+                    <span class="block text-[11px] text-slate-400 -mt-1">Excel • Web • App • Design</span>
+                </div>
+            </a>
+
+            <!-- Center Navigation Links (Client View) -->
+            <nav id="clientNavLinks" class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-white transition-colors">Services & Pricing</a>
+                <a href="#estimator" class="hover:text-white transition-colors">Cost Calculator</a>
+                <a href="#post-work" class="hover:text-white transition-colors flex items-center gap-1.5 text-indigo-300">
+                    <i data-lucide="file-plus-2" class="w-4 h-4"></i> Submit Work
+                </a>
+                <a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Right Actions: View Switcher & Primary CTA -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <!-- Mode Switcher Pill -->
+                <div id="modeSwitcher" class="hidden bg-slate-900/90 p-1 rounded-xl border border-slate-800 items-center text-xs sm:text-sm">
+                    <button id="btnBothMode" onclick="switchMode('both')" class="px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
+                        Both
+                    </button>
+                    <button id="btnClientMode" onclick="switchMode('client')" class="px-3 py-1.5 rounded-lg font-medium transition-all bg-indigo-600 text-white shadow">
+                        Client View
+                    </button>
+                    <button id="btnAdminMode" onclick="switchMode('admin')" class="px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
+                        <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+                        <span>Admin</span>
+                        <span id="adminBadgeCount" class="px-1.5 py-0.2 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 rounded-full text-[11px] font-bold">4</span>
+                    </button>
+                </div>
+
+                <!-- Post Work Button -->
+                <a href="#post-work" onclick="switchMode('client')" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-indigo-600/25 transition-all">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>Post Your Work</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- MAIN CLIENT VIEW CONTAINER                 -->
+    <!-- ========================================== -->
+    <main id="clientViewContainer" class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section class="relative overflow-hidden pt-10 pb-20 lg:pt-16 lg:pb-24 hero-glow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Copy & Quick Service Pickers -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs sm:text-sm font-medium">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400"></i>
+                            <span>All-in-One Digital & Data Solutions Portal</span>
+                        </div>
+
+                        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[54px] tracking-tight text-white leading-[1.15]">
+                            Apna Kaam Post Karein — <br class="hidden sm:inline" />
+                            <span class="gradient-text">Excel, Website, App & Logo</span> Experts Se Karwayein!
+                        </h1>
+
+                        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Chahe messy <strong>Excel sheet clean & automate</strong> karni ho, business ke liye modern <strong>Website ya Mobile App</strong> banwana ho, ya <strong>Brand Logo</strong> design karwana ho — apni requirement aur file yahan upload karein aur fast delivery paayein.
+                        </p>
+
+                        <!-- Quick Jump Category Pills -->
+                        <div class="pt-2">
+                            <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Select a service to post your requirement directly:</p>
+                            <div class="flex flex-wrap justify-center lg:justify-start gap-2.5">
+                                <button onclick="QuickSelectService('Excel & Data Solutions')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-medium transition-all">
+                                    <i data-lucide="sheet" class="w-4 h-4"></i> Excel & Data Work
+                                </button>
+                                <button onclick="QuickSelectService('Web Development')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-medium transition-all">
+                                    <i data-lucide="globe" class="w-4 h-4"></i> Website Development
+                                </button>
+                                <button onclick="QuickSelectService('App Development')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 text-sm font-medium transition-all">
+                                    <i data-lucide="smartphone" class="w-4 h-4"></i> Mobile App
+                                </button>
+                                <button onclick="QuickSelectService('Logo Design & Branding')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-sm font-medium transition-all">
+                                    <i data-lucide="palette" class="w-4 h-4"></i> Logo & Graphic Design
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Main CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                            <a href="#post-work" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-base shadow-xl shadow-indigo-600/30 transition-all">
+                                <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                                <span>Post Your Work & Details</span>
+                            </a>
+                            <a href="#services" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl glass-card hover:bg-slate-800/80 text-slate-200 font-semibold text-base transition-all">
+                                <span>Explore All Services</span>
+                                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+
+                        <!-- Trust Metrics -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                            <div>
+                                <div class="font-display font-bold text-2xl text-white">500+</div>
+                                <div class="text-xs text-slate-400">Excel & Tech Projects</div>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold text-2xl text-emerald-400">100%</div>
+                                <div class="text-xs text-slate-400">Data Privacy & Safe</div>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold text-2xl text-amber-400">4.9 ★</div>
+                                <div class="text-xs text-slate-400">Client Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Service Visual Showcase Card -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card rounded-3xl p-6 sm:p-7 border border-white/10 shadow-2xl relative">
+                            <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-800">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                                    <span class="text-xs text-slate-400 font-medium ml-2">Live Service Capabilities</span>
+                                </div>
+                                <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold">4 Core Verticals</span>
+                            </div>
+
+                            <!-- 4 Mini Interactive Pillars -->
+                            <div class="space-y-3.5">
+                                <!-- Pillar 1: Excel -->
+                                <div onclick="QuickSelectService('Excel & Data Solutions')" class="cursor-pointer group p-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-emerald-500/25 transition-all flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400 group-hover:scale-105 transition-transform">
+                                        <i data-lucide="table-2" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="font-bold text-white text-sm sm:text-base group-hover:text-emerald-300 transition-colors">1. Complete Excel & Data Work</h3>
+                                            <span class="text-xs font-semibold text-emerald-400">From ₹299</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-1">Data Cleaning, Duplicate Removal, VLOOKUP/XLOOKUP, Pivot Dashboards, PDF to Excel & Macros.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 2: Web Dev -->
+                                <div onclick="QuickSelectService('Web Development')" class="cursor-pointer group p-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-indigo-500/25 transition-all flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center shrink-0 text-indigo-400 group-hover:scale-105 transition-transform">
+                                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="font-bold text-white text-sm sm:text-base group-hover:text-indigo-300 transition-colors">2. Custom Website Development</h3>
+                                            <span class="text-xs font-semibold text-indigo-400">From ₹3,999</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-1">Business Websites, E-Commerce Stores, Landing Pages, Admin Portals & Payment Gateway Setup.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 3: App Dev -->
+                                <div onclick="QuickSelectService('App Development')" class="cursor-pointer group p-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-sky-500/25 transition-all flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center shrink-0 text-sky-400 group-hover:scale-105 transition-transform">
+                                        <i data-lucide="tablet-smartphone" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="font-bold text-white text-sm sm:text-base group-hover:text-sky-300 transition-colors">3. Android & iOS App Building</h3>
+                                            <span class="text-xs font-semibold text-sky-400">From ₹9,999</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-1">Custom Business Apps, Delivery/Booking Apps, Cross-Platform Flutter/React Native & Play Store Launch.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 4: Logo Design -->
+                                <div onclick="QuickSelectService('Logo Design & Branding')" class="cursor-pointer group p-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-amber-500/25 transition-all flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0 text-amber-400 group-hover:scale-105 transition-transform">
+                                        <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="font-bold text-white text-sm sm:text-base group-hover:text-amber-300 transition-colors">4. Logo Design & Brand Kit</h3>
+                                            <span class="text-xs font-semibold text-amber-400">From ₹499</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-1">Modern 2D/3D Business Logos, Vector Source Files, Visiting Cards, Letterheads & Social Media Banners.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Prompt Banner -->
+                            <div class="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                                <span class="flex items-center gap-1.5">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                                    Click any card above to start posting your task
+                                </span>
+                                <a href="#post-work" class="text-indigo-400 hover:underline font-medium">Open Form →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- DETAILED SERVICES CATALOG SECTION          -->
+        <!-- ========================================== -->
+        <section id="services" class="py-16 sm:py-20 border-t border-slate-800/80 bg-slate-950/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Our Services Catalog</span>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2">Choose What You Need Help With</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-3">
+                        Browse our specialized packages below. Click <strong>"Select & Post Details"</strong> on any service to automatically load it into the project submission form.
+                    </p>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10" id="serviceFilterTabs">
+                    <button onclick="filterServiceCards('all')" data-filter="all" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white shadow transition-all">
+                        All Services (12)
+                    </button>
+                    <button onclick="filterServiceCards('Excel & Data Solutions')" data-filter="Excel & Data Solutions" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="sheet" class="w-4 h-4 text-emerald-400"></i> Excel & Data Work
+                    </button>
+                    <button onclick="filterServiceCards('Web Development')" data-filter="Web Development" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="globe" class="w-4 h-4 text-indigo-400"></i> Web Development
+                    </button>
+                    <button onclick="filterServiceCards('App Development')" data-filter="App Development" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="smartphone" class="w-4 h-4 text-sky-400"></i> App Development
+                    </button>
+                    <button onclick="filterServiceCards('Logo Design & Branding')" data-filter="Logo Design & Branding" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="palette" class="w-4 h-4 text-amber-400"></i> Logo & Branding
+                    </button>
+                </div>
+
+                <!-- Dynamic Service Cards Grid -->
+                <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Populated via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- INSTANT PROJECT PRICE ESTIMATOR            -->
+        <!-- ========================================== -->
+        <section id="estimator" class="py-16 border-t border-slate-800/80">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-card rounded-3xl p-6 sm:p-10 border border-indigo-500/20 shadow-2xl">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        
+                        <div class="lg:col-span-7 space-y-6">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Instant Cost Calculator</span>
+                                <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-1">Estimate Your Project Budget</h2>
+                                <p class="text-slate-400 text-sm mt-1">Select the services you need and urgency level to see an approximate price before submitting your work.</p>
+                            </div>
+
+                            <!-- Calculator Options -->
+                            <div class="space-y-3">
+                                <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">1. Select Required Services (Multiple Allowed):</label>
+                                <div class="grid sm:grid-cols-2 gap-2.5" id="calcItemsContainer">
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="499" data-cat="Excel & Data Solutions" data-name="Excel Data Cleaning & Formatting" onchange="calculateEstimate()" checked class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>Excel Cleaning / Formatting</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-emerald-400">₹499</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="999" data-cat="Excel & Data Solutions" data-name="Pivot Tables & Dynamic Dashboard" onchange="calculateEstimate()" class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>Excel Dashboard & Formulas</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-emerald-400">₹999</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="4500" data-cat="Web Development" data-name="Responsive Business Website" onchange="calculateEstimate()" class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>Business / Portfolio Website</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-indigo-400">₹4,500</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="8500" data-cat="Web Development" data-name="E-Commerce / Custom Portal" onchange="calculateEstimate()" class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>E-Commerce / Custom Web App</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-indigo-400">₹8,500</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="12000" data-cat="App Development" data-name="Android / iOS Mobile Application" onchange="calculateEstimate()" class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>Android / iOS Mobile App</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-sky-400">₹12,000</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-slate-800 cursor-pointer hover:border-indigo-500/40 transition-all">
+                                        <span class="flex items-center gap-2.5 text-sm text-slate-200">
+                                            <input type="checkbox" value="799" data-cat="Logo Design & Branding" data-name="Custom 2D/3D Logo Design" onchange="calculateEstimate()" class="calc-check w-4 h-4 rounded accent-indigo-600">
+                                            <span>Pro Logo Design + Vector</span>
+                                        </span>
+                                        <span class="text-xs font-semibold text-amber-400">₹799</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Urgency Multiplier -->
+                            <div>
+                                <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">2. Delivery Speed:</label>
+                                <div class="grid grid-cols-3 gap-2.5">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="calcUrgency" value="1" onchange="calculateEstimate()" checked class="peer sr-only">
+                                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 text-center transition-all">
+                                            <div class="text-xs font-bold text-white">Standard</div>
+                                            <div class="text-[11px] text-slate-400">Normal Price</div>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="calcUrgency" value="1.25" onchange="calculateEstimate()" class="peer sr-only">
+                                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 text-center transition-all">
+                                            <div class="text-xs font-bold text-amber-300">Fast Track</div>
+                                            <div class="text-[11px] text-slate-400">+25% Priority</div>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="calcUrgency" value="1.5" onchange="calculateEstimate()" class="peer sr-only">
+                                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 text-center transition-all">
+                                            <div class="text-xs font-bold text-rose-400">Express Urgent</div>
+                                            <div class="text-[11px] text-slate-400">Same/Next Day</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Output Box -->
+                        <div class="lg:col-span-5 bg-slate-900/95 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-6">
+                            <div>
+                                <span class="text-xs font-medium text-slate-400">Estimated Project Cost</span>
+                                <div class="flex items-baseline gap-2 mt-1">
+                                    <span id="calcTotalDisplay" class="font-display font-extrabold text-4xl text-white">₹499</span>
+                                    <span class="text-xs text-slate-400">approx.</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">Final price depends on complexity & volume of data/pages. No advance needed to submit your requirement!</p>
+                                
+                                <div class="mt-4 pt-4 border-t border-slate-800">
+                                    <span class="text-xs font-semibold text-slate-300 block mb-2">Selected Deliverables:</span>
+                                    <ul id="calcSelectedList" class="space-y-1.5 text-xs text-slate-300">
+                                        <!-- Populated dynamically -->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <button onclick="applyEstimateToForm()" class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 transition-all">
+                                <span>Proceed With This Estimate</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- MAIN "POST YOUR WORK / SUBMIT PROJECT"     -->
+        <!-- ========================================== -->
+        <section id="post-work" class="py-16 sm:py-20 border-t border-slate-800/80 bg-gradient-to-b from-slate-950 via-indigo-950/15 to-slate-950">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Form Heading -->
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold mb-3">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> Direct Work Submission Portal
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">Apna Kaam Aur Details Yahan Daalein</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2">
+                        Fill out your requirement below, attach any sample Excel sheets, rough sketches, or documents, and we will start working on your project!
+                    </p>
+                </div>
+
+                <!-- Project Submission Form Card -->
+                <form id="workSubmissionForm" onsubmit="handleProjectSubmit(event)" class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl space-y-8">
+                    
+                    <!-- STEP 1: CLIENT CONTACT DETAILS -->
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+                            <h3 class="font-display font-bold text-lg text-white">Your Contact Information</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Full Name / Business Name *</label>
+                                <div class="relative">
+                                    <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
+                                    <input type="text" id="clientName" required placeholder="e.g. Rahul Sharma" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">WhatsApp / Mobile Number *</label>
+                                <div class="relative">
+                                    <i data-lucide="phone" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
+                                    <input type="tel" id="clientPhone" required placeholder="e.g. 9876543210" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Email Address (Optional)</label>
+                                <div class="relative">
+                                    <i data-lucide="mail" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
+                                    <input type="email" id="clientEmail" placeholder="rahul@example.com" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: SELECT SERVICE CATEGORY & SUB-TASKS -->
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                            <h3 class="font-display font-bold text-lg text-white">Select Service Category & Specific Tasks</h3>
+                        </div>
+
+                        <!-- Category Radio Cards -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Excel & Data Solutions" onchange="updateSubTasksUI('Excel & Data Solutions')" checked class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="sheet" class="w-6 h-6 text-emerald-400"></i>
+                                    <span class="text-xs sm:text-sm font-bold text-white">Excel & Data Work</span>
+                                    <span class="text-[11px] text-slate-400">Cleaning, Formulas, Pivot</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Web Development" onchange="updateSubTasksUI('Web Development')" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="globe" class="w-6 h-6 text-indigo-400"></i>
+                                    <span class="text-xs sm:text-sm font-bold text-white">Web Development</span>
+                                    <span class="text-[11px] text-slate-400">Business, Store, Portal</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="App Development" onchange="updateSubTasksUI('App Development')" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-sky-500 peer-checked:bg-sky-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="smartphone" class="w-6 h-6 text-sky-400"></i>
+                                    <span class="text-xs sm:text-sm font-bold text-white">App Development</span>
+                                    <span class="text-[11px] text-slate-400">Android, iOS & Custom</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Logo Design & Branding" onchange="updateSubTasksUI('Logo Design & Branding')" class="peer sr-only">
+                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-amber-500 peer-checked:bg-amber-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="palette" class="w-6 h-6 text-amber-400"></i>
+                                    <span class="text-xs sm:text-sm font-bold text-white">Logo & Branding</span>
+                                    <span class="text-[11px] text-slate-400">2D/3D Logo, Brand Kit</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic Sub-Tasks Checkboxes -->
+                        <div class="bg-slate-900/70 rounded-2xl p-4 border border-slate-800">
+                            <label id="subTaskHeading" class="block text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3">
+                                What needs to be done in Excel & Data Solutions? (Check all that apply):
+                            </label>
+                            <div id="dynamicSubTasksContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                                <!-- Populated via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: WORK DESCRIPTION, BUDGET & DEADLINE -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+                                <h3 class="font-display font-bold text-lg text-white">Work Details & Instructions</h3>
+                            </div>
+                            <span class="text-xs text-slate-400">Write in English, Hindi, or Hinglish</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Project / Work Title *</label>
+                                <input type="text" id="projectTitle" required placeholder="e.g. Clean 5,000 rows of sales Excel data & create monthly summary" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                            </div>
+
+                            <div>
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <label class="block text-xs font-medium text-slate-300">Detailed Work Description (Apna kaam detail me samjhayein) *</label>
+                                    <!-- Quick Sample Prompt Fillers -->
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-[11px] text-slate-400">Quick Fill Sample:</span>
+                                        <button type="button" onclick="fillSampleDescription('excel')" class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25">Excel Sample</button>
+                                        <button type="button" onclick="fillSampleDescription('web')" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/25">Web Sample</button>
+                                        <button type="button" onclick="fillSampleDescription('logo')" class="text-[11px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25">Logo Sample</button>
+                                    </div>
+                                </div>
+                                <textarea id="projectDescription" rows="4" required placeholder="Describe what you want us to do. For example: 'Mere paas ek Excel sheet hai jisme duplicate phone numbers hatane hain, proper format me naam set karna hai aur state-wise Pivot table banana hai...'" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Your Estimated Budget (₹ INR) *</label>
+                                    <select id="projectBudget" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                        <option value="₹300 - ₹700 (Quick Task / Excel / Basic Design)">₹300 - ₹700 (Quick Task / Excel / Basic Design)</option>
+                                        <option value="₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)">₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)</option>
+                                        <option value="₹2,000 - ₹5,000 (Landing Page / Complex Automation)">₹2,000 - ₹5,000 (Landing Page / Complex Automation)</option>
+                                        <option value="₹5,000 - ₹15,000 (Full Business Website / Web Portal)">₹5,000 - ₹15,000 (Full Business Website / Web Portal)</option>
+                                        <option value="₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)">₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)</option>
+                                        <option value="Need Quote After Review">Not Sure — Give me best quote after checking</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Expected Delivery Deadline *</label>
+                                    <input type="date" id="projectDeadline" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: ATTACH EXCEL SHEET / REFERENCE FILES -->
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">4</span>
+                            <h3 class="font-display font-bold text-lg text-white">Upload Excel File, Document or Reference Image (Optional)</h3>
+                        </div>
+
+                        <div class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center bg-slate-900/50 transition-all cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                            <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv,.pdf,.doc,.docx,.png,.jpg,.jpeg,.zip" class="hidden" onchange="handleFileSelection(event)">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center mx-auto text-indigo-400 mb-3">
+                                <i data-lucide="file-up" class="w-6 h-6"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-white">Click to attach your Excel file (`.xlsx`, `.csv`), PDF, or Reference Image</p>
+                            <p class="text-xs text-slate-400 mt-1">Supports Excel spreadsheets, Word docs, PDFs, ZIPs & Logo sketches</p>
+                        </div>
+
+                        <!-- Attached Files List -->
+                        <div id="attachedFilesList" class="mt-3 space-y-2 hidden"></div>
+                    </div>
+
+                    <!-- Submit CTA -->
+                    <div class="pt-2">
+                        <button type="submit" id="projectSubmitBtn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-display font-bold text-base sm:text-lg shadow-xl shadow-indigo-600/25 flex items-center justify-center gap-2.5 transition-all">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            <span>Submit Work Requirement Now</span>
+                        </button>
+                        <p class="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1.5">
+                            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            100% Confidential. Your uploaded Excel data & project details stay strictly private.
+                        </p>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- HOW IT WORKS (3-STEP PROCESS)              -->
+        <!-- ========================================== -->
+        <section id="how-it-works" class="py-16 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Simple Workflow</span>
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-2">Kaam Kaise Hota Hai? (3 Simple Steps)</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-bold flex items-center justify-center mb-4">01</div>
+                        <h3 class="font-display font-bold text-lg text-white">1. Post Your Requirement</h3>
+                        <p class="text-sm text-slate-400 mt-2">Select Excel, Website, App, or Logo Design in the form above, explain your work, and attach your raw file or sample.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                        <div class="w-11 h-11 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-400 font-bold flex items-center justify-center mb-4">02</div>
+                        <h3 class="font-display font-bold text-lg text-white">2. Instant Review & Confirmation</h3>
+                        <p class="text-sm text-slate-400 mt-2">We review your data or project scope immediately and connect with you on WhatsApp/Call with a clear timeline & final quote.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center mb-4">03</div>
+                        <h3 class="font-display font-bold text-lg text-white">3. Fast Delivery & Revisions</h3>
+                        <p class="text-sm text-slate-400 mt-2">Receive your cleaned Excel sheet, live website/app, or high-res logo files on time with free revisions until you're 100% happy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- FAQ SECTION                                -->
+        <!-- ========================================== -->
+        <section id="faq" class="py-16 border-t border-slate-800/80 bg-slate-950/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Got Questions?</span>
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-1">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-3.5">
+                    <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                        <h4 class="font-bold text-white text-sm sm:text-base">Q1. Excel me kis-kis tarah ka kaam aap karte hain?</h4>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1.5">Hum Excel aur Google Sheets ka sara kaam karte hain: Messy data cleaning, duplicate entries hatana, text/date formatting, VLOOKUP/XLOOKUP formulas lagana, Pivot Tables, Interactive Charts/Dashboards banana, aur PDF ya photo se Excel data entry.</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                        <h4 class="font-bold text-white text-sm sm:text-base">Q2. Kya mera Excel data aur business details safe rahengi?</h4>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1.5">Bilkul 100%! Aapकी files aur client database poori tarah confidential rakha jata hai aur kaam complete hone ke baad kisi ke saath share nahi kiya jata.</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                        <h4 class="font-bold text-white text-sm sm:text-base">Q3. Website, Mobile App aur Logo kitne din me mil jata hai?</h4>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1.5">Excel cleaning aur Logo concepts <strong>same day (3–24 hours)</strong> me mil jaate hain. Business websites 3 se 5 din me aur custom Mobile Apps requirement ke hisaab se 7 se 15 din me ready ho jate hain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- ADMIN DASHBOARD CONTAINER (OWNER VIEW)     -->
+    <!-- ========================================== -->
+    <section id="adminViewContainer" class="hidden flex-grow py-10 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <!-- Admin Header Bar -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-2">
+                        <i data-lucide="shield" class="w-3.5 h-3.5"></i> Owner Admin Panel
+                    </div>
+                    <h1 class="font-display font-extrabold text-2xl sm:text-3xl text-white">Submitted Client Work & Orders</h1>
+                    <p class="text-slate-400 text-sm mt-1">Manage all incoming client requests for Excel, Web Dev, App Dev & Logo Design in one place.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="exportOrdersToCSV()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-emerald-600/20 transition-all">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Export All to Excel (.CSV)</span>
+                    </button>
+                    <button onclick="switchMode('client')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-medium transition-all">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        <span>Back to Website</span>
+                    </button>
+                    <button onclick="adminLogout()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-600/80 hover:bg-rose-500 text-white text-xs sm:text-sm font-medium transition-all">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Stats KPI Row -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 font-medium">Total Client Requests</span>
+                    <div id="statTotalOrders" class="font-display font-extrabold text-3xl text-white mt-1">0</div>
+                    <span class="text-[11px] text-indigo-400 mt-1 block">Across all 4 categories</span>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 font-medium">New / Pending Review</span>
+                    <div id="statNewOrders" class="font-display font-extrabold text-3xl text-amber-400 mt-1">0</div>
+                    <span class="text-[11px] text-slate-400 mt-1 block">Action required</span>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 font-medium">In Progress</span>
+                    <div id="statInProgressOrders" class="font-display font-extrabold text-3xl text-sky-400 mt-1">0</div>
+                    <span class="text-[11px] text-slate-400 mt-1 block">Active ongoing work</span>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 font-medium">Completed Projects</span>
+                    <div id="statCompletedOrders" class="font-display font-extrabold text-3xl text-emerald-400 mt-1">0</div>
+                    <span class="text-[11px] text-slate-400 mt-1 block">Delivered to clients</span>
+                </div>
+            </div>
+
+            <!-- Filter & Search Bar -->
+            <div class="glass-card p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                    <select id="adminCategoryFilter" onchange="renderAdminOrders()" class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white focus:outline-none">
+                        <option value="all">All Categories</option>
+                        <option value="Excel & Data Solutions">Excel & Data Solutions</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="App Development">App Development</option>
+                        <option value="Logo Design & Branding">Logo Design & Branding</option>
+                    </select>
+
+                    <select id="adminStatusFilter" onchange="renderAdminOrders()" class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white focus:outline-none">
+                        <option value="all">All Statuses</option>
+                        <option value="New Request">New Request</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="relative w-full sm:w-72">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5"></i>
+                    <input type="text" id="adminSearchInput" oninput="renderAdminOrders()" placeholder="Search client, phone or title..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none">
+                </div>
+            </div>
+
+            <!-- Submitted Projects List -->
+            <div id="adminOrdersList" class="space-y-4">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SUBMISSION SUCCESS MODAL                   -->
+    <!-- ========================================== -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+        <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 border border-emerald-500/30 shadow-2xl text-center space-y-5">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+                <i data-lucide="check-circle-2" class="w-9 h-9"></i>
+            </div>
+            <div>
+                <span id="modalRefBadge" class="px-3 py-1 rounded-full bg-slate-800 text-indigo-300 text-xs font-mono font-semibold">REF: #WC-1024</span>
+                <h3 class="font-display font-bold text-2xl text-white mt-3">Aapka Kaam Submit Ho Gaya Hai!</h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2">
+                    Thank you! Your project details and files have been saved. Our team will review your requirement and contact you on WhatsApp shortly.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button id="successAdminBtn" onclick="closeSuccessModalAndViewAdmin()" class="hidden flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>View in Admin Panel</span>
+                </button>
+                <button onclick="closeSuccessModal()" class="flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-semibold transition-all">
+                    Done / Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ADMIN LOGIN MODAL                          -->
+    <!-- ========================================== -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+        <div class="glass-card max-w-sm w-full rounded-3xl p-6 border border-indigo-500/30 shadow-2xl text-center space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 text-indigo-400 flex items-center justify-center mx-auto">
+                <i data-lucide="shield" class="w-7 h-7"></i>
+            </div>
+            <div>
+                <h3 class="font-display font-bold text-xl text-white">Admin Access</h3>
+                <p class="text-xs text-slate-300 mt-1">Enter the admin password to view client requests.</p>
+            </div>
+            <input type="password" id="adminPasswordInput" placeholder="Password" onkeydown="if(event.key==='Enter') attemptAdminLogin()" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm text-center focus:outline-none focus:border-indigo-500">
+            <p id="adminPasswordError" class="hidden text-xs text-rose-400">Incorrect password. Try again.</p>
+            <div class="flex gap-3 pt-1">
+                <button type="button" onclick="attemptAdminLogin()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold">Unlock Admin</button>
+                <button type="button" onclick="closeAdminLoginModal()" class="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+                <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i>
+                <span class="font-bold text-white">SROne Studio</span>
+                <span>— Excel Data Solutions, Web Development, Mobile Apps & Logo Design</span>
+            </div>
+            <div>
+                © 2026 SROne Studio. Built for fast client project submissions.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION JAVASCRIPT                     -->
+    <!-- ========================================== -->
+    <script>
+        // 1. Service Catalog Data
+        const SERVICES_CATALOG = [
+            // Excel & Data Solutions
+            {
+                id: 'excel-clean',
+                category: 'Excel & Data Solutions',
+                badge: 'Most Popular in Excel',
+                title: 'Excel Data Cleaning & Formatting',
+                price: '₹299',
+                turnaround: '3 - 12 Hours',
+                icon: 'sparkles',
+                accent: 'emerald',
+                subTaskPreselect: 'Data Cleaning & Formatting',
+                description: 'Messy spreadsheet ko clean aur well-structured banayein. Extra spaces, wrong date formats, aur duplicates hatayein.',
+                features: ['Remove Duplicates & Blank Rows', 'Proper Case, Date & Number Formatting', 'Split/Merge Columns (Name, Address, GST)']
+            },
+            {
+                id: 'excel-formulas',
+                category: 'Excel & Data Solutions',
+                badge: 'Formulas & Automation',
+                title: 'VLOOKUP, XLOOKUP & Complex Formulas',
+                price: '₹399',
+                turnaround: 'Same Day',
+                icon: 'function-square',
+                accent: 'emerald',
+                subTaskPreselect: 'VLOOKUP / XLOOKUP & Formulas',
+                description: 'Do alag sheets ko match karna ho, conditional IF formulas lagane ho ya automated sheet banani ho.',
+                features: ['XLOOKUP, VLOOKUP & INDEX-MATCH', 'Automated Billing / Attendance Sheet', 'Error Fixing (#N/A, #VALUE!)']
+            },
+            {
+                id: 'excel-dashboard',
+                category: 'Excel & Data Solutions',
+                badge: 'Business Insights',
+                title: 'Pivot Tables & Interactive Dashboards',
+                price: '₹799',
+                turnaround: '1 - 2 Days',
+                icon: 'bar-chart-3',
+                accent: 'emerald',
+                subTaskPreselect: 'Pivot Tables & Charts Dashboard',
+                description: 'Apne sales, inventory ya expense data ko सुंदर charts, slicers aur interactive MIS reports me convert karwayein.',
+                features: ['Dynamic Pivot Tables & Slicers', 'Visual KPI Charts & Monthly Trackers', 'PDF / Image to Excel Data Entry']
+            },
+
+            // Web Development
+            {
+                id: 'web-business',
+                category: 'Web Development',
+                badge: 'Best for Business',
+                title: 'Business, Clinic & Service Website',
+                price: '₹3,999',
+                turnaround: '3 - 5 Days',
+                icon: 'globe',
+                accent: 'indigo',
+                subTaskPreselect: 'Business / Portfolio Website',
+                description: 'Apne business, coaching, clinic ya agency ke liye mobile-friendly aur modern website banwayein.',
+                features: ['5-7 Responsive Modern Pages', 'WhatsApp Chat & Lead Inquiry Form', 'SEO Ready & Fast Loading']
+            },
+            {
+                id: 'web-ecom',
+                category: 'Web Development',
+                badge: 'Sell Online',
+                title: 'E-Commerce Store & Payment Setup',
+                price: '₹7,999',
+                turnaround: '5 - 7 Days',
+                icon: 'shopping-bag',
+                accent: 'indigo',
+                subTaskPreselect: 'E-Commerce Online Store',
+                description: 'Apne products online sell karne ke liye complete shopping website with cart, UPI/Card payment aur admin panel.',
+                features: ['Product Catalog & Order Management', 'Razorpay / UPI Payment Integration', 'Customer Login & Invoice Generation']
+            },
+            {
+                id: 'web-landing',
+                category: 'Web Development',
+                badge: 'High Converting',
+                title: 'Custom Landing Page / Web Portal',
+                price: '₹1,999',
+                turnaround: '1 - 2 Days',
+                icon: 'layout',
+                accent: 'indigo',
+                subTaskPreselect: 'Single Landing Page / Bug Fix',
+                description: 'Ads chalane ke liye high-converting landing page ya existing website me naye features aur bug fixing.',
+                features: ['Custom UI with Tailwind / React', 'Lead Capture to Excel / Google Sheets', 'Website Redesign & Speed Optimization']
+            },
+
+            // App Development
+            {
+                id: 'app-android',
+                category: 'App Development',
+                badge: 'Android & iOS',
+                title: 'Custom Android & iOS Mobile App',
+                price: '₹9,999',
+                turnaround: '7 - 14 Days',
+                icon: 'smartphone',
+                accent: 'sky',
+                subTaskPreselect: 'Android Mobile App (APK / Play Store)',
+                description: 'Startup, local delivery, course selling ya service booking ke liye fast aur user-friendly mobile application.',
+                features: ['Clean Modern App UI/UX', 'Push Notifications & User Login', 'Admin Control Panel Included']
+            },
+            {
+                id: 'app-web2app',
+                category: 'App Development',
+                badge: 'Budget Friendly',
+                title: 'Website to Android App & PWA',
+                price: '₹2,499',
+                turnaround: '2 - 3 Days',
+                icon: 'app-window',
+                accent: 'sky',
+                subTaskPreselect: 'Convert Website into Mobile App',
+                description: 'Apni existing website ko full-featured Android APK me convert karwayein with splash screen aur app icon.',
+                features: ['Ready-to-share APK + Play Store Bundle', 'Custom App Icon & Splash Screen', 'Offline Screen & Pull-to-Refresh']
+            },
+            {
+                id: 'app-erp',
+                category: 'App Development',
+                badge: 'Internal Tool',
+                title: 'Business Inventory & Staff App',
+                price: '₹11,999',
+                turnaround: '10 - 15 Days',
+                icon: 'briefcase',
+                accent: 'sky',
+                subTaskPreselect: 'Custom Business / Billing App',
+                description: 'Apni dukaan, godown ya field staff ki attendance, stock aur daily billing track karne ke liye custom app.',
+                features: ['Role-Based Staff & Admin Login', 'One-Click Excel Report Export', 'Cloud Sync Database']
+            },
+
+            // Logo Design & Branding
+            {
+                id: 'logo-custom',
+                category: 'Logo Design & Branding',
+                badge: 'Top Rated',
+                title: 'Custom 2D / 3D Business Logo Design',
+                price: '₹499',
+                turnaround: '12 - 24 Hours',
+                icon: 'pen-tool',
+                accent: 'amber',
+                subTaskPreselect: 'Custom 2D / 3D Logo Design',
+                description: 'Apne brand, YouTube channel, dukaan ya company ke liye unique aur memorable logo design karwayein.',
+                features: ['3 Unique Initial Logo Concepts', 'High-Res PNG, Transparent & Vector SVG', '3D Mockup Preview Included']
+            },
+            {
+                id: 'logo-brandkit',
+                category: 'Logo Design & Branding',
+                badge: 'Complete Pack',
+                title: 'Complete Brand Identity & Stationery Kit',
+                price: '₹1,299',
+                turnaround: '2 Days',
+                icon: 'award',
+                accent: 'amber',
+                subTaskPreselect: 'Visiting Card & Letterhead Kit',
+                description: 'Naye business ke liye Logo + Visiting Card + Letterhead + Social Media DP & Cover ka complete package.',
+                features: ['Logo + Color Palette & Fonts Guide', 'Print-Ready Business Card (Front/Back)', 'Bill Book / Letterhead Design']
+            },
+            {
+                id: 'logo-social',
+                category: 'Logo Design & Branding',
+                badge: 'Marketing Graphics',
+                title: 'Social Media Posts, Banners & Flyers',
+                price: '₹399',
+                turnaround: 'Same Day',
+                icon: 'image',
+                accent: 'amber',
+                subTaskPreselect: 'Social Media Posters / Banners',
+                description: 'Instagram/Facebook promotion posters, YouTube thumbnails, aur festival/offer banners design karwayein.',
+                features: ['Eye-Catching Ad Creatives', 'Editable Canva / PSD Source Link', 'Fast Same-Day Turnaround']
+            }
+        ];
+
+        // 2. Dynamic Sub-Tasks per Category
+        const CATEGORY_SUBTASKS = {
+            'Excel & Data Solutions': [
+                'Data Cleaning & Formatting',
+                'Remove Duplicates & Blank Cells',
+                'VLOOKUP / XLOOKUP & Formulas',
+                'Pivot Tables & Charts Dashboard',
+                'Split / Merge Columns & Text Fix',
+                'PDF / Image to Excel Data Entry',
+                'Google Sheets Automation / Macros'
+            ],
+            'Web Development': [
+                'Business / Portfolio Website',
+                'E-Commerce Online Store',
+                'Single Landing Page / Bug Fix',
+                'Custom Admin Panel / Portal',
+                'Payment Gateway / WhatsApp Setup',
+                'Website Redesign & Speed Optimization'
+            ],
+            'App Development': [
+                'Android Mobile App (APK / Play Store)',
+                'iOS & Cross-Platform App',
+                'Convert Website into Mobile App',
+                'Custom Business / Billing App',
+                'App UI/UX Design & Prototyping',
+                'Fix Bugs in Existing App'
+            ],
+            'Logo Design & Branding': [
+                'Custom 2D / 3D Logo Design',
+                'Logo Redesign / Vector Tracing',
+                'Visiting Card & Letterhead Kit',
+                'Social Media Posters / Banners',
+                'Brochure / Menu / Flyer Design',
+                'YouTube Channel Art & Thumbnail'
+            ]
+        };
+
+        // 3. Initial Sample Client Orders for Admin Dashboard
+        const DEFAULT_CLIENT_ORDERS = [
+            {
+                id: 'WC-8941',
+                clientName: 'Vikramaditya Enterprises',
+                clientPhone: '9835012345',
+                clientEmail: 'vikram.sales@gmail.com',
+                category: 'Excel & Data Solutions',
+                subTasks: ['Data Cleaning & Formatting', 'Remove Duplicates & Blank Cells', 'Pivot Tables & Charts Dashboard'],
+                title: 'Clean 8,500 Rows Customer GST Sheet & City-wise Summary',
+                description: 'Hamare paas 3 alag Excel files hain jinme customer names, phone numbers aur GSTIN messy format me hain. Duplicate entries hatani hain, mobile numbers se +91 space clean karna hai aur state-wise Pivot table banana hai.',
+                budget: '₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)',
+                deadline: '2026-10-22',
+                files: ['Customer_Raw_Data_2026.xlsx (1.4 MB)', 'State_Codes.csv (45 KB)'],
+                status: 'New Request',
+                createdAt: 'Today, 09:15 AM'
+            },
+            {
+                id: 'WC-8938',
+                clientName: 'Dr. Neha Verma (Arogya Dental)',
+                clientPhone: '9123456789',
+                clientEmail: 'drneha.clinic@yahoo.com',
+                category: 'Web Development',
+                subTasks: ['Business / Portfolio Website', 'Payment Gateway / WhatsApp Setup'],
+                title: 'Modern Website for Dental Clinic with Appointment Form',
+                description: 'Need a clean 5-page website for our clinic showing treatments, before/after gallery, doctor profile, and direct WhatsApp appointment booking form.',
+                budget: '₹5,000 - ₹15,000 (Full Business Website / Web Portal)',
+                deadline: '2026-10-27',
+                files: ['Clinic_Brochure_Details.pdf (820 KB)'],
+                status: 'In Progress',
+                createdAt: 'Yesterday, 06:40 PM'
+            },
+            {
+                id: 'WC-8929',
+                clientName: 'Aman Raj (FreshMart Kirana)',
+                clientPhone: '9988776655',
+                clientEmail: 'aman.freshmart@gmail.com',
+                category: 'Logo Design & Branding',
+                subTasks: ['Custom 2D / 3D Logo Design', 'Visiting Card & Letterhead Kit'],
+                title: 'Modern Green & Orange Logo for Grocery Delivery Startup',
+                description: 'Hamare naye grocery store "FreshMart" ke liye ek catchy 3D + flat logo chahiye aur saath me visiting card design.',
+                budget: '₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)',
+                deadline: '2026-10-21',
+                files: ['Rough_Sketch_Idea.jpg (310 KB)'],
+                status: 'Completed',
+                createdAt: '2 days ago'
+            }
+        ];
+
+        let selectedAttachmentFiles = [];
+        const ADMIN_PASSWORD = 'SROneAdmin';
+        const ADMIN_DEVICE_KEY = 'sroone_admin_device';
+        let adminAuthenticated = false;
+        try {
+            adminAuthenticated = localStorage.getItem(ADMIN_DEVICE_KEY) === '1';
+        } catch (e) {}
+
+        // Initialize orders from localStorage or seed default
+        function getOrders() {
+            try {
+                const saved = localStorage.getItem('sroone_client_orders');
+                if (saved) {
+                    return JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+            localStorage.setItem('sroone_client_orders', JSON.stringify(DEFAULT_CLIENT_ORDERS));
+            return DEFAULT_CLIENT_ORDERS;
+        }
+
+        function saveOrders(orders) {
+            try {
+                localStorage.setItem('sroone_client_orders', JSON.stringify(orders));
+            } catch (e) {
+                console.error(e);
+            }
+            updateAdminBadge();
+        }
+
+        // Render Service Cards in Catalog
+        function renderServiceCards(filterCat = 'all') {
+            const grid = document.getElementById('servicesGrid');
+            const filtered = filterCat === 'all'
+                ? SERVICES_CATALOG
+                : SERVICES_CATALOG.filter(s => s.category === filterCat);
+
+            const accentColorMap = {
+                emerald: {
+                    badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+                    icon: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+                    btn: 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                },
+                indigo: {
+                    badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+                    icon: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30',
+                    btn: 'bg-indigo-600 hover:bg-indigo-500 text-white'
+                },
+                sky: {
+                    badge: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+                    icon: 'bg-sky-500/15 text-sky-400 border-sky-500/30',
+                    btn: 'bg-sky-600 hover:bg-sky-500 text-white'
+                },
+                amber: {
+                    badge: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+                    icon: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+                    btn: 'bg-amber-600 hover:bg-amber-500 text-white'
+                }
+            };
+
+            grid.innerHTML = filtered.map(item => {
+                const c = accentColorMap[item.accent] || accentColorMap.indigo;
+                return `
+                    <div class="glass-card rounded-3xl p-6 flex flex-col justify-between service-card-hover">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <div class="w-12 h-12 rounded-2xl border ${c.icon} flex items-center justify-center">
+                                    <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full border ${c.badge}">
+                                    ${item.badge}
+                                </span>
+                            </div>
+
+                            <div class="text-xs text-slate-400 font-medium">${item.category}</div>
+                            <h3 class="font-display font-bold text-lg text-white mt-0.5">${item.title}</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">${item.description}</p>
+
+                            <ul class="mt-4 pt-4 border-t border-slate-800/80 space-y-2">
+                                ${item.features.map(f => `
+                                    <li class="flex items-center gap-2 text-xs text-slate-300">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                                        <span>${f}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[11px] text-slate-400 block">Starting at</span>
+                                <div class="flex items-baseline gap-1.5">
+                                    <span class="font-display font-extrabold text-xl text-white">${item.price}</span>
+                                    <span class="text-[11px] text-slate-400">• ${item.turnaround}</span>
+                                </div>
+                            </div>
+                            <button onclick="selectServiceAndScroll('${item.category}', '${item.subTaskPreselect}', '${item.title}')" class="px-4 py-2.5 rounded-xl text-xs font-bold ${c.btn} shadow transition-all flex items-center gap-1.5">
+                                <span>Post Work</span>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function filterServiceCards(cat) {
+            document.querySelectorAll('.service-tab-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === cat) {
+                    btn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white shadow transition-all flex items-center gap-1.5';
+                } else {
+                    btn.className = 'service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5';
+                }
+            });
+            renderServiceCards(cat);
+        }
+
+        // Update Dynamic Sub-Task Checkboxes in Form
+        function updateSubTasksUI(category, precheckedTask = null) {
+            const heading = document.getElementById('subTaskHeading');
+            const container = document.getElementById('dynamicSubTasksContainer');
+            heading.textContent = `What needs to be done in ${category}? (Select all that apply):`;
+
+            const tasks = CATEGORY_SUBTASKS[category] || CATEGORY_SUBTASKS['Excel & Data Solutions'];
+            container.innerHTML = tasks.map((task, idx) => {
+                const isChecked = precheckedTask ? (task === precheckedTask) : (idx === 0);
+                return `
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-indigo-500/40 cursor-pointer text-xs text-slate-200 transition-all">
+                        <input type="checkbox" name="subTasks" value="${task}" ${isChecked ? 'checked' : ''} class="w-4 h-4 rounded accent-indigo-600">
+                        <span>${task}</span>
+                    </label>
+                `;
+            }).join('');
+        }
+
+        // Quick Select from Hero or Service Card
+        function QuickSelectService(category) {
+            switchMode('client');
+            const radios = document.querySelectorAll('input[name="serviceCategory"]');
+            radios.forEach(r => {
+                r.checked = (r.value === category);
+            });
+            updateSubTasksUI(category);
+            document.getElementById('post-work').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectServiceAndScroll(category, subTask, serviceTitle) {
+            switchMode('client');
+            const radios = document.querySelectorAll('input[name="serviceCategory"]');
+            radios.forEach(r => {
+                r.checked = (r.value === category);
+            });
+            updateSubTasksUI(category, subTask);
+            const titleInput = document.getElementById('projectTitle');
+            if (!titleInput.value) {
+                titleInput.value = `Need ${serviceTitle}`;
+            }
+            document.getElementById('post-work').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Instant Quote Calculator Logic
+        function calculateEstimate() {
+            const checks = document.querySelectorAll('.calc-check:checked');
+            const urgencyRadio = document.querySelector('input[name="calcUrgency"]:checked');
+            const multiplier = urgencyRadio ? parseFloat(urgencyRadio.value) : 1;
+
+            let baseTotal = 0;
+            const selectedNames = [];
+
+            checks.forEach(ch => {
+                baseTotal += parseInt(ch.value, 10);
+                selectedNames.push(ch.getAttribute('data-name'));
+            });
+
+            const finalPrice = Math.round(baseTotal * multiplier);
+            document.getElementById('calcTotalDisplay').textContent = `₹${finalPrice.toLocaleString('en-IN')}`;
+
+            const listEl = document.getElementById('calcSelectedList');
+            if (selectedNames.length === 0) {
+                listEl.innerHTML = `<li class="text-slate-500 italic">Select at least one service on the left</li>`;
+            } else {
+                listEl.innerHTML = selectedNames.map(n => `
+                    <li class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>${n}</span>
+                    </li>
+                `).join('');
+            }
+        }
+
+        function applyEstimateToForm() {
+            const checks = document.querySelectorAll('.calc-check:checked');
+            if (checks.length > 0) {
+                const firstCat = checks[0].getAttribute('data-cat');
+                const names = Array.from(checks).map(c => c.getAttribute('data-name')).join(' + ');
+                QuickSelectService(firstCat);
+                document.getElementById('projectTitle').value = names;
+            } else {
+                document.getElementById('post-work').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Sample Prompt Helper for Clients
+        function fillSampleDescription(type) {
+            const titleEl = document.getElementById('projectTitle');
+            const descEl = document.getElementById('projectDescription');
+
+            if (type === 'excel') {
+                QuickSelectService('Excel & Data Solutions');
+                titleEl.value = 'Excel Sales Data Cleaning, Duplicate Removal & Monthly Pivot Report';
+                descEl.value = 'Mere paas ek Excel sheet hai jisme ~3,000 rows ka data hai. Usme se duplicate mobile numbers hatane hain, names ko Proper Case me set karna hai, aur VLOOKUP laga kar Product Sheet se price match karke ek clean Pivot Table Dashboard banana hai.';
+            } else if (type === 'web') {
+                QuickSelectService('Web Development');
+                titleEl.value = 'Modern Business Website with Service Booking & WhatsApp Integration';
+                descEl.value = 'Hume apne business ke liye ek fast, mobile-responsive website banwani hai jisme Home, Services, Pricing, Portfolio aur Contact Form ho, aur customer direct apni inquiry WhatsApp aur Admin Panel me bhej sake.';
+            } else if (type === 'logo') {
+                QuickSelectService('Logo Design & Branding');
+                titleEl.value = 'Modern 3D + Minimal Brand Logo & Visiting Card Design';
+                descEl.value = 'Hamare naye brand ke liye ek professional aur unique logo chahiye. Color theme Royal Blue aur Gold rakhna hai. Saath me transparent PNG, vector file aur visiting card design bhi chahiye.';
+            }
+        }
+
+        // File Attachment Handling
+        function handleFileSelection(event) {
+            const files = Array.from(event.target.files);
+            files.forEach(f => {
+                const sizeKB = f.size > 1024 * 1024
+                    ? `${(f.size / (1024 * 1024)).toFixed(1)} MB`
+                    : `${Math.max(1, Math.round(f.size / 1024))} KB`;
+                selectedAttachmentFiles.push(`${f.name} (${sizeKB})`);
+            });
+            renderAttachedFiles();
+        }
+
+        function removeAttachedFile(index) {
+            selectedAttachmentFiles.splice(index, 1);
+            renderAttachedFiles();
+        }
+
+        function renderAttachedFiles() {
+            const listEl = document.getElementById('attachedFilesList');
+            if (selectedAttachmentFiles.length === 0) {
+                listEl.classList.add('hidden');
+                listEl.innerHTML = '';
+                return;
+            }
+            listEl.classList.remove('hidden');
+            listEl.innerHTML = selectedAttachmentFiles.map((fileStr, idx) => `
+                <div class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="paperclip" class="w-4 h-4 text-emerald-400"></i>
+                        <span class="font-medium">${fileStr}</span>
+                    </div>
+                    <button type="button" onclick="removeAttachedFile(${idx})" class="text-rose-400 hover:text-rose-300 text-xs font-semibold">
+                        Remove
+                    </button>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // Form Submission Handler
+        async function handleProjectSubmit(e) {
+            e.preventDefault();
+
+            const clientName = document.getElementById('clientName').value.trim();
+            const clientPhone = document.getElementById('clientPhone').value.trim();
+            const clientEmail = document.getElementById('clientEmail').value.trim() || 'Not provided';
+            const categoryRadio = document.querySelector('input[name="serviceCategory"]:checked');
+            const category = categoryRadio ? categoryRadio.value : 'Excel & Data Solutions';
+
+            const checkedSubTasks = Array.from(document.querySelectorAll('input[name="subTasks"]:checked')).map(cb => cb.value);
+            const title = document.getElementById('projectTitle').value.trim();
+            const description = document.getElementById('projectDescription').value.trim();
+            const budget = document.getElementById('projectBudget').value;
+            const deadline = document.getElementById('projectDeadline').value;
+
+            const refId = 'WC-' + Math.floor(1000 + Math.random() * 9000);
+
+            const newOrder = {
+                id: refId,
+                clientName,
+                clientPhone,
+                clientEmail,
+                category,
+                subTasks: checkedSubTasks.length ? checkedSubTasks : ['Custom Requirement'],
+                title,
+                description,
+                budget,
+                deadline,
+                files: selectedAttachmentFiles.length ? [...selectedAttachmentFiles] : ['No file attached'],
+                status: 'New Request',
+                createdAt: 'Just now'
+            };
+
+            const submitBtn = document.getElementById('projectSubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+            try {
+                const res = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newOrder)
+                });
+                if (!res.ok) throw new Error('Submit failed: ' + res.status);
+            } catch (err) {
+                console.error(err);
+                alert('Submit nahi ho paya. Kripya dobara try karein ya WhatsApp par contact karein.');
+                return;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+
+            const orders = getOrders();
+            orders.unshift(newOrder);
+            saveOrders(orders);
+
+            // Reset Form
+            document.getElementById('workSubmissionForm').reset();
+            selectedAttachmentFiles = [];
+            renderAttachedFiles();
+            setDefaultDeadlineDate();
+            updateSubTasksUI('Excel & Data Solutions');
+
+            // Show Confirmation Modal
+            document.getElementById('modalRefBadge').textContent = `ORDER ID: #${refId}`;
+            document.getElementById('successAdminBtn').classList.toggle('hidden', !adminAuthenticated);
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closeSuccessModalAndViewAdmin() {
+            closeSuccessModal();
+            switchMode('admin');
+        }
+
+        // Admin Login Modal Logic
+        function showAdminLoginModal() {
+            const modal = document.getElementById('adminLoginModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('adminPasswordError').classList.add('hidden');
+            setTimeout(() => document.getElementById('adminPasswordInput').focus(), 50);
+            lucide.createIcons();
+        }
+
+        function closeAdminLoginModal() {
+            const modal = document.getElementById('adminLoginModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function attemptAdminLogin() {
+            const input = document.getElementById('adminPasswordInput').value;
+            if (input === ADMIN_PASSWORD) {
+                adminAuthenticated = true;
+                try {
+                    localStorage.setItem(ADMIN_DEVICE_KEY, '1');
+                } catch (e) {}
+                closeAdminLoginModal();
+                document.getElementById('modeSwitcher').classList.replace('hidden', 'flex');
+                switchMode('both');
+            } else {
+                document.getElementById('adminPasswordError').classList.remove('hidden');
+            }
+        }
+
+        // Switch between Client View, Admin Dashboard, or both together
+        const ACTIVE_MODE_BTN = 'px-3 py-1.5 rounded-lg font-medium transition-all bg-indigo-600 text-white shadow flex items-center gap-1.5';
+        const INACTIVE_MODE_BTN = 'px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white flex items-center gap-1.5';
+
+        function switchMode(mode) {
+            const clientContainer = document.getElementById('clientViewContainer');
+            const adminContainer = document.getElementById('adminViewContainer');
+            const clientNav = document.getElementById('clientNavLinks');
+
+            if (mode !== 'client' && !adminAuthenticated) {
+                showAdminLoginModal();
+                return;
+            }
+
+            const showAdmin = mode === 'admin' || mode === 'both';
+            const showClient = mode === 'client' || mode === 'both';
+            adminContainer.classList.toggle('hidden', !showAdmin);
+            clientContainer.classList.toggle('hidden', !showClient);
+            clientNav.classList.toggle('md:hidden', !showClient);
+
+            ['both', 'client', 'admin'].forEach((m) => {
+                const btn = document.getElementById('btn' + m.charAt(0).toUpperCase() + m.slice(1) + 'Mode');
+                btn.className = m === mode ? ACTIVE_MODE_BTN : INACTIVE_MODE_BTN;
+            });
+
+            if (showAdmin) {
+                renderAdminOrders();
+                if (mode === 'admin') window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function adminLogout() {
+            adminAuthenticated = false;
+            try {
+                localStorage.removeItem(ADMIN_DEVICE_KEY);
+            } catch (e) {}
+            document.getElementById('modeSwitcher').classList.replace('flex', 'hidden');
+            switchMode('client');
+        }
+
+        function updateAdminBadge() {
+            const orders = getOrders();
+            document.getElementById('adminBadgeCount').textContent = orders.length;
+        }
+
+        // Render Admin Orders & KPIs
+        function renderAdminOrders() {
+            const orders = getOrders();
+            const catFilter = document.getElementById('adminCategoryFilter').value;
+            const statusFilter = document.getElementById('adminStatusFilter').value;
+            const searchQuery = document.getElementById('adminSearchInput').value.toLowerCase().trim();
+
+            // Update KPIs
+            document.getElementById('statTotalOrders').textContent = orders.length;
+            document.getElementById('statNewOrders').textContent = orders.filter(o => o.status === 'New Request').length;
+            document.getElementById('statInProgressOrders').textContent = orders.filter(o => o.status === 'In Progress').length;
+            document.getElementById('statCompletedOrders').textContent = orders.filter(o => o.status === 'Completed').length;
+
+            const filtered = orders.filter(o => {
+                const matchesCat = catFilter === 'all' || o.category === catFilter;
+                const matchesStatus = statusFilter === 'all' || o.status === statusFilter;
+                const matchesSearch = !searchQuery ||
+                    o.clientName.toLowerCase().includes(searchQuery) ||
+                    o.clientPhone.toLowerCase().includes(searchQuery) ||
+                    o.title.toLowerCase().includes(searchQuery) ||
+                    o.id.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesStatus && matchesSearch;
+            });
+
+            const container = document.getElementById('adminOrdersList');
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card rounded-2xl p-10 text-center border border-slate-800">
+                        <p class="text-slate-400 text-sm">No matching client requests found.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const statusColors = {
+                'New Request': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+                'In Progress': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+                'Completed': 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+            };
+
+            container.innerHTML = filtered.map(order => {
+                const stClass = statusColors[order.status] || statusColors['New Request'];
+                const cleanPhone = order.clientPhone.replace(/\D/g, '');
+                const waText = encodeURIComponent(`Hi ${order.clientName}, humne aapka SROne Studio par "${order.title}" (${order.id}) ka project requirement check kar liya hai. Aaiye isko start karte hain!`);
+                const waUrl = `https://wa.me/91${cleanPhone.slice(-10)}?text=${waText}`;
+
+                return `
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-slate-700 transition-all space-y-4">
+                        <div class="flex flex-wrap items-start justify-between gap-4 pb-4 border-b border-slate-800/80">
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="font-mono text-xs font-bold px-2.5 py-0.5 rounded bg-slate-800 text-indigo-300">#${order.id}</span>
+                                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full border ${stClass}">${order.status}</span>
+                                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">${order.category}</span>
+                                    <span class="text-xs text-slate-400">• Submitted: ${order.createdAt}</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-white mt-2">${order.title}</h3>
+                            </div>
+
+                            <!-- Status Updater & Delete -->
+                            <div class="flex items-center gap-2">
+                                <select onchange="updateOrderStatus('${order.id}', this.value)" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none">
+                                    <option value="New Request" ${order.status === 'New Request' ? 'selected' : ''}>Status: New Request</option>
+                                    <option value="In Progress" ${order.status === 'In Progress' ? 'selected' : ''}>Status: In Progress</option>
+                                    <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Status: Completed</option>
+                                </select>
+                                <button onclick="deleteOrder('${order.id}')" title="Delete Request" class="p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-all">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Client Details & Work Description -->
+                        <div class="grid md:grid-cols-12 gap-6">
+                            <div class="md:col-span-8 space-y-3">
+                                <div>
+                                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Detailed Client Requirement:</span>
+                                    <p class="text-xs sm:text-sm text-slate-200 mt-1 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 leading-relaxed">${order.description}</p>
+                                </div>
+
+                                <div>
+                                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1.5">Selected Sub-Tasks:</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${order.subTasks.map(t => `<span class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1.5">Attached Files / References:</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${order.files.map(f => `
+                                            <span class="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300">
+                                                <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> ${f}
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Client Contact Box -->
+                            <div class="md:col-span-4 bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                                <div class="space-y-2 text-xs">
+                                    <div class="font-bold text-slate-300 uppercase tracking-wider text-[11px] pb-1 border-b border-slate-800">Client Contact Details</div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Client Name:</span>
+                                        <span class="font-semibold text-white">${order.clientName}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">WhatsApp/Phone:</span>
+                                        <span class="font-semibold text-emerald-400">${order.clientPhone}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Email:</span>
+                                        <span class="text-slate-200 truncate max-w-[160px]">${order.clientEmail}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Budget:</span>
+                                        <span class="font-semibold text-indigo-300 text-right">${order.budget.split('(')[0]}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Deadline:</span>
+                                        <span class="font-semibold text-amber-300">${order.deadline}</span>
+                                    </div>
+                                </div>
+
+                                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow transition-all">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    <span>Chat with Client on WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const orders = getOrders().map(o => o.id === orderId ? { ...o, status: newStatus } : o);
+            saveOrders(orders);
+            renderAdminOrders();
+        }
+
+        function deleteOrder(orderId) {
+            const orders = getOrders().filter(o => o.id !== orderId);
+            saveOrders(orders);
+            renderAdminOrders();
+        }
+
+        // Export Orders to Excel-Compatible CSV
+        function exportOrdersToCSV() {
+            const orders = getOrders();
+            const headers = ['Order ID', 'Client Name', 'Phone', 'Email', 'Category', 'Sub-Tasks', 'Project Title', 'Description', 'Budget', 'Deadline', 'Attached Files', 'Status'];
+            const rows = orders.map(o => [
+                o.id,
+                o.clientName,
+                o.clientPhone,
+                o.clientEmail,
+                o.category,
+                o.subTasks.join('; '),
+                o.title,
+                o.description.replace(/\n/g, ' '),
+                o.budget,
+                o.deadline,
+                o.files.join('; '),
+                o.status
+            ]);
+
+            const csvContent = [
+                headers.join(','),
+                ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `SROne_Client_Orders_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function setDefaultDeadlineDate() {
+            const d = new Date();
+            d.setDate(d.getDate() + 3);
+            document.getElementById('projectDeadline').value = d.toISOString().split('T')[0];
+        }
+
+        // Initialize on Window Load
+        window.onload = function () {
+            renderServiceCards('all');
+            updateSubTasksUI('Excel & Data Solutions');
+            calculateEstimate();
+            setDefaultDeadlineDate();
+            updateAdminBadge();
+            if (adminAuthenticated) {
+                document.getElementById('modeSwitcher').classList.replace('hidden', 'flex');
+                switchMode('both');
+            } else if (window.location.pathname.replace(/\/+$/, '') === '/admin' || window.location.hash === '#admin') {
+                showAdminLoginModal();
+            }
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
