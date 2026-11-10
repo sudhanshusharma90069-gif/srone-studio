@@ -79,6 +79,7 @@
             box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25);
         }
 
+        html { scroll-padding-top: 9rem; }
         .fl-wrap { position: relative; }
         .fl-input { padding-top: 1.45rem !important; padding-bottom: 0.55rem !important; transition: border-color .2s, box-shadow .2s; }
         .fl-input:focus { box-shadow: 0 10px 28px -10px rgba(99, 102, 241, .55); }
@@ -88,7 +89,12 @@
         .float-field { opacity: 0; transform: translateY(28px); }
         .float-field.is-in { animation: floatUp .6s cubic-bezier(.22, 1, .36, 1) forwards; animation-delay: calc(var(--i, 0) * 120ms); }
         @keyframes floatUp { to { opacity: 1; transform: none; } }
-        @media (prefers-reduced-motion: reduce) { .float-field { opacity: 1; transform: none; } .float-field.is-in { animation: none; } }
+        .offer-chip { animation: offerBob 3s ease-in-out infinite; }
+        .offer-chip:nth-child(2) { animation-delay: .35s; }
+        .offer-chip:nth-child(3) { animation-delay: .7s; }
+        .offer-chip:nth-child(4) { animation-delay: 1.05s; }
+        @keyframes offerBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        @media (prefers-reduced-motion: reduce) { .float-field { opacity: 1; transform: none; } .float-field.is-in, .offer-chip { animation: none; } }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
@@ -153,6 +159,10 @@
                     <span>Post Your Work</span>
                 </a>
             </div>
+        </div>
+        <!-- Floating Category Offers Bar -->
+        <div class="border-t border-white/5">
+            <div id="categoryOffersBar" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 grid grid-cols-4 gap-1.5 sm:gap-3"></div>
         </div>
     </header>
 
@@ -1757,6 +1767,45 @@
         }
 
         // Initialize on Window Load
+        const CATEGORY_OFFERS = [
+            { category: 'Excel & Data Solutions', label: 'Excel & Data', icon: 'sheet', color: 'emerald' },
+            { category: 'Web Development', label: 'Web Dev', icon: 'globe', color: 'indigo' },
+            { category: 'App Development', label: 'App Dev', icon: 'smartphone', color: 'sky' },
+            { category: 'Logo Design & Branding', label: 'Logo & Brand', icon: 'palette', color: 'amber' }
+        ];
+        const OFFER_CHIP_COLORS = {
+            emerald: 'border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300',
+            indigo: 'border-indigo-500/40 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300',
+            sky: 'border-sky-500/40 bg-sky-500/10 hover:bg-sky-500/20 text-sky-300',
+            amber: 'border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300'
+        };
+
+        function startingPrice(category) {
+            const prices = SERVICES_CATALOG.filter(s => s.category === category)
+                .map(s => parseInt(String(s.price).replace(/[^0-9]/g, ''), 10))
+                .filter(n => !isNaN(n));
+            return prices.length ? '₹' + Math.min(...prices).toLocaleString('en-IN') : '';
+        }
+
+        function renderCategoryOffers() {
+            document.getElementById('categoryOffersBar').innerHTML = CATEGORY_OFFERS.map(o => `
+                <button type="button" onclick="selectOfferCategory('${o.category}')" class="offer-chip flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-1.5 sm:px-3 py-1.5 rounded-xl border ${OFFER_CHIP_COLORS[o.color]} transition-colors">
+                    <i data-lucide="${o.icon}" class="w-4 h-4 shrink-0"></i>
+                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">${o.label}</span>
+                    <span class="text-[10px] sm:text-[11px] font-semibold leading-tight">${startingPrice(o.category)} se shuru</span>
+                </button>`).join('');
+        }
+
+        function selectOfferCategory(category) {
+            switchMode('client');
+            const radio = document.querySelector(`input[name="serviceCategory"][value="${category}"]`);
+            if (radio) {
+                radio.checked = true;
+                updateSubTasksUI(category);
+            }
+            document.getElementById('post-work').scrollIntoView({ behavior: 'smooth' });
+        }
+
         function initFloatingForm() {
             const fields = document.querySelectorAll('#workSubmissionForm .float-field');
             if (!('IntersectionObserver' in window)) return fields.forEach((el) => el.classList.add('is-in'));
@@ -1775,6 +1824,7 @@
             updateSubTasksUI('Excel & Data Solutions');
             calculateEstimate();
             setDefaultDeadlineDate();
+            renderCategoryOffers();
             initFloatingForm();
             updateAdminBadge();
             if (adminAuthenticated) {
