@@ -78,6 +78,17 @@
             border-color: rgba(99, 102, 241, 0.5);
             box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25);
         }
+
+        .fl-wrap { position: relative; }
+        .fl-input { padding-top: 1.45rem !important; padding-bottom: 0.55rem !important; transition: border-color .2s, box-shadow .2s; }
+        .fl-input:focus { box-shadow: 0 10px 28px -10px rgba(99, 102, 241, .55); }
+        .fl-label { position: absolute; left: 1rem; top: 0.95rem; font-size: 0.875rem; color: #94a3b8; pointer-events: none; transition: all .2s ease; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 2rem); }
+        .fl-wrap.has-icon .fl-label { left: 2.5rem; max-width: calc(100% - 3.5rem); }
+        .fl-input:focus ~ .fl-label, .fl-input:not(:placeholder-shown) ~ .fl-label, .fl-label.fl-fixed { top: 0.4rem; font-size: 0.68rem; color: #a5b4fc; }
+        .float-field { opacity: 0; transform: translateY(28px); }
+        .float-field.is-in { animation: floatUp .6s cubic-bezier(.22, 1, .36, 1) forwards; animation-delay: calc(var(--i, 0) * 120ms); }
+        @keyframes floatUp { to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .float-field { opacity: 1; transform: none; } .float-field.is-in { animation: none; } }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
@@ -473,7 +484,7 @@
         <!-- MAIN "POST YOUR WORK / SUBMIT PROJECT"     -->
         <!-- ========================================== -->
         <section id="post-work" class="py-16 sm:py-20 border-t border-slate-800/80 bg-gradient-to-b from-slate-950 via-indigo-950/15 to-slate-950">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Form Heading -->
                 <div class="text-center mb-10">
@@ -491,44 +502,38 @@
                     
                     <!-- STEP 1: CLIENT CONTACT DETAILS -->
                     <div>
-                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                        <div class="float-field flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
                             <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
                             <h3 class="font-display font-bold text-lg text-white">Your Contact Information</h3>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Full Name / Business Name *</label>
-                                <div class="relative">
-                                    <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
-                                    <input type="text" id="clientName" required placeholder="e.g. Rahul Sharma" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-                                </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="float-field fl-wrap has-icon">
+                                <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-3.5 top-4 z-10"></i>
+                                <input type="text" id="clientName" required placeholder=" " class="fl-input peer w-full pl-10 pr-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                <label for="clientName" class="fl-label">Full Name / Business Name *</label>
                             </div>
-                            <div>
-                                <label class="block text-xs font-medium text-slate-300 mb-1.5">WhatsApp / Mobile Number *</label>
-                                <div class="relative">
-                                    <i data-lucide="phone" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
-                                    <input type="tel" id="clientPhone" required placeholder="e.g. 9876543210" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-                                </div>
+                            <div class="float-field fl-wrap has-icon">
+                                <i data-lucide="phone" class="w-4 h-4 text-slate-500 absolute left-3.5 top-4 z-10"></i>
+                                <input type="tel" id="clientPhone" required placeholder=" " class="fl-input peer w-full pl-10 pr-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                <label for="clientPhone" class="fl-label">WhatsApp / Mobile Number *</label>
                             </div>
-                            <div>
-                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Email Address (Optional)</label>
-                                <div class="relative">
-                                    <i data-lucide="mail" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
-                                    <input type="email" id="clientEmail" placeholder="rahul@example.com" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-                                </div>
+                            <div class="float-field fl-wrap has-icon">
+                                <i data-lucide="mail" class="w-4 h-4 text-slate-500 absolute left-3.5 top-4 z-10"></i>
+                                <input type="email" id="clientEmail" placeholder=" " class="fl-input peer w-full pl-10 pr-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                <label for="clientEmail" class="fl-label">Email Address (Optional)</label>
                             </div>
                         </div>
                     </div>
 
                     <!-- STEP 2: SELECT SERVICE CATEGORY & SUB-TASKS -->
                     <div>
-                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                        <div class="float-field flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
                             <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">2</span>
                             <h3 class="font-display font-bold text-lg text-white">Select Service Category & Specific Tasks</h3>
                         </div>
 
                         <!-- Category Radio Cards -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                        <div class="float-field grid grid-cols-2 gap-3 mb-5">
                             <label class="cursor-pointer">
                                 <input type="radio" name="serviceCategory" value="Excel & Data Solutions" onchange="updateSubTasksUI('Excel & Data Solutions')" checked class="peer sr-only">
                                 <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
@@ -567,11 +572,11 @@
                         </div>
 
                         <!-- Dynamic Sub-Tasks Checkboxes -->
-                        <div class="bg-slate-900/70 rounded-2xl p-4 border border-slate-800">
+                        <div class="float-field bg-slate-900/70 rounded-2xl p-4 border border-slate-800">
                             <label id="subTaskHeading" class="block text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3">
                                 What needs to be done in Excel & Data Solutions? (Check all that apply):
                             </label>
-                            <div id="dynamicSubTasksContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                            <div id="dynamicSubTasksContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                 <!-- Populated via JS -->
                             </div>
                         </div>
@@ -579,7 +584,7 @@
 
                     <!-- STEP 3: WORK DESCRIPTION, BUDGET & DEADLINE -->
                     <div>
-                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+                        <div class="float-field flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
                             <div class="flex items-center gap-2.5">
                                 <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">3</span>
                                 <h3 class="font-display font-bold text-lg text-white">Work Details & Instructions</h3>
@@ -588,14 +593,13 @@
                         </div>
 
                         <div class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Project / Work Title *</label>
-                                <input type="text" id="projectTitle" required placeholder="e.g. Clean 5,000 rows of sales Excel data & create monthly summary" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                            <div class="float-field fl-wrap">
+                                <input type="text" id="projectTitle" required placeholder=" " class="fl-input w-full px-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                                <label for="projectTitle" class="fl-label">Project / Work Title *</label>
                             </div>
 
-                            <div>
-                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                                    <label class="block text-xs font-medium text-slate-300">Detailed Work Description (Apna kaam detail me samjhayein) *</label>
+                            <div class="float-field">
+                                <div class="flex flex-wrap items-center justify-end gap-2 mb-1.5">
                                     <!-- Quick Sample Prompt Fillers -->
                                     <div class="flex items-center gap-1.5">
                                         <span class="text-[11px] text-slate-400">Quick Fill Sample:</span>
@@ -604,13 +608,15 @@
                                         <button type="button" onclick="fillSampleDescription('logo')" class="text-[11px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25">Logo Sample</button>
                                     </div>
                                 </div>
-                                <textarea id="projectDescription" rows="4" required placeholder="Describe what you want us to do. For example: 'Mere paas ek Excel sheet hai jisme duplicate phone numbers hatane hain, proper format me naam set karna hai aur state-wise Pivot table banana hai...'" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"></textarea>
+                                <div class="fl-wrap">
+                                    <textarea id="projectDescription" rows="5" required placeholder=" " class="fl-input w-full px-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500"></textarea>
+                                    <label for="projectDescription" class="fl-label">Detailed Work Description (Apna kaam detail me samjhayein) *</label>
+                                </div>
                             </div>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Your Estimated Budget (₹ INR) *</label>
-                                    <select id="projectBudget" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="float-field fl-wrap">
+                                    <select id="projectBudget" class="fl-input w-full px-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
                                         <option value="₹300 - ₹700 (Quick Task / Excel / Basic Design)">₹300 - ₹700 (Quick Task / Excel / Basic Design)</option>
                                         <option value="₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)">₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)</option>
                                         <option value="₹2,000 - ₹5,000 (Landing Page / Complex Automation)">₹2,000 - ₹5,000 (Landing Page / Complex Automation)</option>
@@ -618,11 +624,12 @@
                                         <option value="₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)">₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)</option>
                                         <option value="Need Quote After Review">Not Sure — Give me best quote after checking</option>
                                     </select>
+                                    <label for="projectBudget" class="fl-label fl-fixed">Your Estimated Budget (₹ INR) *</label>
                                 </div>
 
-                                <div>
-                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Expected Delivery Deadline *</label>
-                                    <input type="date" id="projectDeadline" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                <div class="float-field fl-wrap">
+                                    <input type="date" id="projectDeadline" required class="fl-input w-full px-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                    <label for="projectDeadline" class="fl-label fl-fixed">Expected Delivery Deadline *</label>
                                 </div>
                             </div>
                         </div>
@@ -630,12 +637,12 @@
 
                     <!-- STEP 4: ATTACH EXCEL SHEET / REFERENCE FILES -->
                     <div>
-                        <div class="flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
+                        <div class="float-field flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
                             <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">4</span>
                             <h3 class="font-display font-bold text-lg text-white">Upload Excel File, Document or Reference Image (Optional)</h3>
                         </div>
 
-                        <div class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center bg-slate-900/50 transition-all cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                        <div class="float-field border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center bg-slate-900/50 transition-all cursor-pointer" onclick="document.getElementById('fileInput').click()">
                             <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv,.pdf,.doc,.docx,.png,.jpg,.jpeg,.zip" class="hidden" onchange="handleFileSelection(event)">
                             <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center mx-auto text-indigo-400 mb-3">
                                 <i data-lucide="file-up" class="w-6 h-6"></i>
@@ -649,7 +656,7 @@
                     </div>
 
                     <!-- Submit CTA -->
-                    <div class="pt-2">
+                    <div class="float-field pt-2">
                         <button type="submit" id="projectSubmitBtn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-display font-bold text-base sm:text-lg shadow-xl shadow-indigo-600/25 flex items-center justify-center gap-2.5 transition-all">
                             <i data-lucide="check-circle" class="w-5 h-5"></i>
                             <span>Submit Work Requirement Now</span>
@@ -1750,11 +1757,25 @@
         }
 
         // Initialize on Window Load
+        function initFloatingForm() {
+            const fields = document.querySelectorAll('#workSubmissionForm .float-field');
+            if (!('IntersectionObserver' in window)) return fields.forEach((el) => el.classList.add('is-in'));
+            const io = new IntersectionObserver((entries) => {
+                entries.filter((e) => e.isIntersecting).forEach((e, i) => {
+                    e.target.style.setProperty('--i', i);
+                    e.target.classList.add('is-in');
+                    io.unobserve(e.target);
+                });
+            }, { rootMargin: '0px 0px -40px 0px' });
+            fields.forEach((el) => io.observe(el));
+        }
+
         window.onload = function () {
             renderServiceCards('all');
             updateSubTasksUI('Excel & Data Solutions');
             calculateEstimate();
             setDefaultDeadlineDate();
+            initFloatingForm();
             updateAdminBadge();
             if (adminAuthenticated) {
                 document.getElementById('modeSwitcher').classList.replace('hidden', 'flex');
