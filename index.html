@@ -88,7 +88,12 @@
         .float-field { opacity: 0; transform: translateY(28px); }
         .float-field.is-in { animation: floatUp .6s cubic-bezier(.22, 1, .36, 1) forwards; animation-delay: calc(var(--i, 0) * 120ms); }
         @keyframes floatUp { to { opacity: 1; transform: none; } }
-        @media (prefers-reduced-motion: reduce) { .float-field { opacity: 1; transform: none; } .float-field.is-in { animation: none; } }
+        .cat-float > div { animation: catBob 3.2s ease-in-out infinite; }
+        .cat-float:nth-child(2) > div { animation-delay: .4s; }
+        .cat-float:nth-child(3) > div { animation-delay: .8s; }
+        .cat-float:nth-child(4) > div { animation-delay: 1.2s; }
+        @keyframes catBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @media (prefers-reduced-motion: reduce) { .float-field { opacity: 1; transform: none; } .float-field.is-in, .cat-float > div { animation: none; } }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
@@ -499,6 +504,49 @@
 
                 <!-- Project Submission Form Card -->
                 <form id="workSubmissionForm" onsubmit="handleProjectSubmit(event)" class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl space-y-8">
+                    <div>
+                        <p class="float-field text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3 text-center">Kaunsi service chahiye?</p>
+                        <!-- Category Radio Cards (top row) -->
+                        <div class="grid grid-cols-4 gap-2 sm:gap-3">
+                            <label class="float-field cat-float cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Excel & Data Solutions" onchange="updateSubTasksUI('Excel & Data Solutions')" checked class="peer sr-only">
+                                <div class="px-1.5 py-3 sm:p-3 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="sheet" class="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400"></i>
+                                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">Excel & Data Work</span>
+                                    <span class="hidden sm:block text-[10px] text-slate-400 leading-tight">Cleaning, Formulas, Pivot</span>
+                                </div>
+                            </label>
+
+                            <label class="float-field cat-float cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Web Development" onchange="updateSubTasksUI('Web Development')" class="peer sr-only">
+                                <div class="px-1.5 py-3 sm:p-3 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="globe" class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400"></i>
+                                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">Web Development</span>
+                                    <span class="hidden sm:block text-[10px] text-slate-400 leading-tight">Business, Store, Portal</span>
+                                </div>
+                            </label>
+
+                            <label class="float-field cat-float cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="App Development" onchange="updateSubTasksUI('App Development')" class="peer sr-only">
+                                <div class="px-1.5 py-3 sm:p-3 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-sky-500 peer-checked:bg-sky-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="smartphone" class="w-5 h-5 sm:w-6 sm:h-6 text-sky-400"></i>
+                                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">App Development</span>
+                                    <span class="hidden sm:block text-[10px] text-slate-400 leading-tight">Android, iOS & Custom</span>
+                                </div>
+                            </label>
+
+                            <label class="float-field cat-float cursor-pointer">
+                                <input type="radio" name="serviceCategory" value="Logo Design & Branding" onchange="updateSubTasksUI('Logo Design & Branding')" class="peer sr-only">
+                                <div class="px-1.5 py-3 sm:p-3 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-amber-500 peer-checked:bg-amber-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
+                                    <i data-lucide="palette" class="w-5 h-5 sm:w-6 sm:h-6 text-amber-400"></i>
+                                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">Logo & Branding</span>
+                                    <span class="hidden sm:block text-[10px] text-slate-400 leading-tight">2D/3D Logo, Brand Kit</span>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+
                     
                     <!-- STEP 1: CLIENT CONTACT DETAILS -->
                     <div>
@@ -529,46 +577,7 @@
                     <div>
                         <div class="float-field flex items-center gap-2.5 mb-4 pb-2 border-b border-slate-800">
                             <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">2</span>
-                            <h3 class="font-display font-bold text-lg text-white">Select Service Category & Specific Tasks</h3>
-                        </div>
-
-                        <!-- Category Radio Cards -->
-                        <div class="float-field grid grid-cols-2 gap-3 mb-5">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="serviceCategory" value="Excel & Data Solutions" onchange="updateSubTasksUI('Excel & Data Solutions')" checked class="peer sr-only">
-                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
-                                    <i data-lucide="sheet" class="w-6 h-6 text-emerald-400"></i>
-                                    <span class="text-xs sm:text-sm font-bold text-white">Excel & Data Work</span>
-                                    <span class="text-[11px] text-slate-400">Cleaning, Formulas, Pivot</span>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="serviceCategory" value="Web Development" onchange="updateSubTasksUI('Web Development')" class="peer sr-only">
-                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
-                                    <i data-lucide="globe" class="w-6 h-6 text-indigo-400"></i>
-                                    <span class="text-xs sm:text-sm font-bold text-white">Web Development</span>
-                                    <span class="text-[11px] text-slate-400">Business, Store, Portal</span>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="serviceCategory" value="App Development" onchange="updateSubTasksUI('App Development')" class="peer sr-only">
-                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-sky-500 peer-checked:bg-sky-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
-                                    <i data-lucide="smartphone" class="w-6 h-6 text-sky-400"></i>
-                                    <span class="text-xs sm:text-sm font-bold text-white">App Development</span>
-                                    <span class="text-[11px] text-slate-400">Android, iOS & Custom</span>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="serviceCategory" value="Logo Design & Branding" onchange="updateSubTasksUI('Logo Design & Branding')" class="peer sr-only">
-                                <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-amber-500 peer-checked:bg-amber-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
-                                    <i data-lucide="palette" class="w-6 h-6 text-amber-400"></i>
-                                    <span class="text-xs sm:text-sm font-bold text-white">Logo & Branding</span>
-                                    <span class="text-[11px] text-slate-400">2D/3D Logo, Brand Kit</span>
-                                </div>
-                            </label>
+                            <h3 class="font-display font-bold text-lg text-white">Select Specific Tasks</h3>
                         </div>
 
                         <!-- Dynamic Sub-Tasks Checkboxes -->
