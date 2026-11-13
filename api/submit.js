@@ -8,7 +8,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
-  const webhookUrl = process.env.ZAPIER_WEBHOOK_URL;
+  const webhookUrl = process.env.ZAPIER_WEBHOOK_URL || 'https://hook.eu1.make.com/9yhlr88qy4aembvhojeovgq5kx7268b9';
   if (!webhookUrl) {
     console.error('ZAPIER_WEBHOOK_URL is not configured');
     return res.status(500).json({ success: false, error: 'Submission service is not configured' });
