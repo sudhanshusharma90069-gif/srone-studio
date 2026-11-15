@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="https://unpkg.com/lucide@1.72.0/dist/umd/lucide.min.js"></script>
 
     <script>
@@ -94,6 +95,7 @@
         html { scroll-padding-top: 9rem; }
         .fl-wrap { position: relative; }
         h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
         .fl-input { padding-top: 1.45rem !important; padding-bottom: 0.55rem !important; transition: border-color .2s, box-shadow .2s; }
         .fl-input:focus { box-shadow: 0 10px 28px -10px rgba(99, 102, 241, .55); }
         .fl-label { position: absolute; left: 1rem; top: 0.95rem; font-size: 0.875rem; color: #94a3b8; pointer-events: none; transition: all .2s ease; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 2rem); }
@@ -134,17 +136,14 @@
                 </div>
                 <div>
                     <span class="font-display font-extrabold text-xl tracking-tight text-white">SROne<span class="text-indigo-400">Studio</span></span>
-                    <span class="block text-[11px] text-slate-400 -mt-1">Excel • Web • App • Design</span>
+                    <span class="block text-[11px] text-slate-400 -mt-1 whitespace-nowrap">Excel • Web • App • Design</span>
                 </div>
             </a>
 
             <!-- Center Navigation Links (Client View) -->
-            <nav id="clientNavLinks" class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+            <nav id="clientNavLinks" class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300 whitespace-nowrap">
                 <a href="#services" class="hover:text-white transition-colors">Services & Pricing</a>
                 <a href="#estimator" class="hover:text-white transition-colors">Cost Calculator</a>
-                <a href="#post-work" class="hover:text-white transition-colors flex items-center gap-1.5 text-indigo-300">
-                    <i data-lucide="file-plus-2" class="w-4 h-4"></i> Submit Work
-                </a>
                 <a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a>
                 <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
             </nav>
@@ -169,23 +168,23 @@
                 <a href="https://wa.me/917979010289?text=Hi%20SROne%20Studio%2C%20mujhe%20ek%20kaam%20karwana%20hai" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp par baat karein" class="client-only inline-flex items-center justify-center gap-2 w-10 h-10 lg:w-auto lg:px-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-sm font-semibold transition-colors">
                     <i data-lucide="message-circle" class="w-4 h-4"></i><span class="hidden lg:inline">WhatsApp</span>
                 </a>
-                <button type="button" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Menu kholein" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden client-only inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 text-slate-200">
+                <button type="button" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Menu kholein" aria-expanded="false" aria-controls="mobileMenu" class="lg:hidden client-only inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 text-slate-200">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <!-- Post Work Button -->
-                <a href="#post-work" onclick="switchMode('client')" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-indigo-600/25 transition-all">
+                <a href="#post-work" onclick="switchMode('client')" class="hidden sm:inline-flex items-center gap-2 whitespace-nowrap bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-indigo-600/25 transition-all">
                     <i data-lucide="send" class="w-4 h-4"></i>
-                    <span>Post Your Work</span>
+                    <span>Kaam Post Karein</span>
                 </a>
             </div>
         </div>
-        <nav id="mobileMenu" aria-label="Mobile" class="hidden md:hidden border-t border-white/5 bg-slate-950/95 px-4 py-3">
+        <nav id="mobileMenu" aria-label="Mobile" class="hidden lg:hidden border-t border-white/5 bg-slate-950/95 px-4 py-3">
             <div class="grid grid-cols-2 gap-2 text-sm font-medium text-slate-200">
                 <a href="#services" onclick="toggleMobileMenu(false)" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800">Services & Pricing</a>
                 <a href="#estimator" onclick="toggleMobileMenu(false)" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800">Cost Calculator</a>
                 <a href="#how-it-works" onclick="toggleMobileMenu(false)" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800">How It Works</a>
                 <a href="#faq" onclick="toggleMobileMenu(false)" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800">FAQ</a>
-                <a href="#post-work" onclick="toggleMobileMenu(false); switchMode('client')" class="col-span-2 px-3 py-2.5 rounded-xl bg-indigo-600 text-white text-center font-semibold">Post Your Work</a>
+                <a href="#post-work" onclick="toggleMobileMenu(false); switchMode('client')" class="col-span-2 px-3 py-2.5 rounded-xl bg-indigo-600 text-white text-center font-semibold">Kaam Post Karein</a>
                 <a href="tel:+917979010289" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>Call Now</a>
                 <a href="mailto:sronetechai06@gmail.com" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i>Email</a>
             </div>
@@ -213,9 +212,9 @@
                             <span>All-in-One Digital & Data Solutions Portal</span>
                         </div>
 
-                        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[54px] tracking-tight text-white leading-[1.15]">
+                        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-5xl xl:text-[52px] tracking-tight text-white leading-[1.15]">
                             Apna Kaam Post Karein — <br class="hidden sm:inline" />
-                            <span class="gradient-text">Excel, Website, App & Logo</span> Experts Se Karwayein!
+                            <span class="gradient-text">Excel, Website, App & Logo</span> <span class="sm:whitespace-nowrap">Experts Se Karwayein!</span>
                         </h1>
 
                         <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
@@ -225,18 +224,18 @@
                         <!-- Quick Jump Category Pills -->
                         <div class="pt-2">
                             <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Select a service to post your requirement directly:</p>
-                            <div class="flex flex-wrap justify-center lg:justify-start gap-2.5">
-                                <button onclick="QuickSelectService('Excel & Data Solutions')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-medium transition-all">
-                                    <i data-lucide="sheet" class="w-4 h-4"></i> Excel & Data Work
+                            <div class="flex flex-wrap justify-center lg:justify-start gap-2">
+                                <button onclick="QuickSelectService('Excel & Data Solutions')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-medium transition-all">
+                                    <i data-lucide="sheet" class="w-4 h-4"></i> Excel & Data
                                 </button>
-                                <button onclick="QuickSelectService('Web Development')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-medium transition-all">
-                                    <i data-lucide="globe" class="w-4 h-4"></i> Website Development
+                                <button onclick="QuickSelectService('Web Development')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-medium transition-all">
+                                    <i data-lucide="globe" class="w-4 h-4"></i> Web Development
                                 </button>
-                                <button onclick="QuickSelectService('App Development')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 text-sm font-medium transition-all">
-                                    <i data-lucide="smartphone" class="w-4 h-4"></i> Mobile App
+                                <button onclick="QuickSelectService('App Development')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 text-sm font-medium transition-all">
+                                    <i data-lucide="smartphone" class="w-4 h-4"></i> App Development
                                 </button>
-                                <button onclick="QuickSelectService('Logo Design & Branding')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-sm font-medium transition-all">
-                                    <i data-lucide="palette" class="w-4 h-4"></i> Logo & Graphic Design
+                                <button onclick="QuickSelectService('Logo Design & Branding')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-sm font-medium transition-all">
+                                    <i data-lucide="palette" class="w-4 h-4"></i> Logo & Branding
                                 </button>
                             </div>
                         </div>
@@ -245,7 +244,7 @@
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
                             <a href="#post-work" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-base shadow-xl shadow-indigo-600/30 transition-all">
                                 <i data-lucide="upload-cloud" class="w-5 h-5"></i>
-                                <span>Post Your Work & Details</span>
+                                <span>Kaam Post Karein</span>
                             </a>
                             <a href="#services" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl glass-card hover:bg-slate-800/80 text-slate-200 font-semibold text-base transition-all">
                                 <span>Explore All Services</span>
@@ -291,8 +290,8 @@
                                         <i data-lucide="table-2" class="w-6 h-6"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-emerald-300 transition-colors">1. Complete Excel & Data Work</h2>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-emerald-300 transition-colors">1. Excel & Data</h2>
                                             <span class="js-start-price text-xs font-semibold text-emerald-400 whitespace-nowrap" data-cat="Excel & Data Solutions">From ₹299</span>
                                         </div>
                                         <p class="text-xs text-slate-400 mt-1">Data Cleaning, Duplicate Removal, VLOOKUP/XLOOKUP, Pivot Dashboards, PDF to Excel & Macros.</p>
@@ -305,8 +304,8 @@
                                         <i data-lucide="code-2" class="w-6 h-6"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-indigo-300 transition-colors">2. Custom Website Development</h2>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-indigo-300 transition-colors">2. Web Development</h2>
                                             <span class="js-start-price text-xs font-semibold text-indigo-400 whitespace-nowrap" data-cat="Web Development">From ₹3,999</span>
                                         </div>
                                         <p class="text-xs text-slate-400 mt-1">Business Websites, E-Commerce Stores, Landing Pages, Admin Portals & Payment Gateway Setup.</p>
@@ -319,8 +318,8 @@
                                         <i data-lucide="tablet-smartphone" class="w-6 h-6"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-sky-300 transition-colors">3. Android & iOS App Building</h2>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-sky-300 transition-colors">3. App Development</h2>
                                             <span class="js-start-price text-xs font-semibold text-sky-400 whitespace-nowrap" data-cat="App Development">From ₹9,999</span>
                                         </div>
                                         <p class="text-xs text-slate-400 mt-1">Custom Business Apps, Delivery/Booking Apps, Cross-Platform Flutter/React Native & Play Store Launch.</p>
@@ -333,8 +332,8 @@
                                         <i data-lucide="pen-tool" class="w-6 h-6"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-amber-300 transition-colors">4. Logo Design & Brand Kit</h2>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <h2 class="font-bold text-white text-sm sm:text-base group-hover:text-amber-300 transition-colors">4. Logo & Branding</h2>
                                             <span class="js-start-price text-xs font-semibold text-amber-400 whitespace-nowrap" data-cat="Logo Design & Branding">From ₹499</span>
                                         </div>
                                         <p class="text-xs text-slate-400 mt-1">Modern 2D/3D Business Logos, Vector Source Files, Visiting Cards, Letterheads & Social Media Banners.</p>
@@ -348,7 +347,7 @@
                                     <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
                                     Click any card above to start posting your task
                                 </span>
-                                <a href="#post-work" class="text-indigo-400 hover:underline font-medium">Open Form →</a>
+                                <a href="#post-work" class="text-indigo-400 hover:underline font-medium whitespace-nowrap">Kaam Post Karein →</a>
                             </div>
                         </div>
                     </div>
@@ -368,7 +367,7 @@
                     <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Our Services Catalog</span>
                     <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2">Choose What You Need Help With</h2>
                     <p class="text-slate-400 text-sm sm:text-base mt-3">
-                        Browse our specialized packages below. Click <strong>"Post Work"</strong> on any service to automatically load it into the project submission form.
+                        Browse our specialized packages below. Click <strong>"Chunein"</strong> on any service to automatically load it into the project submission form.
                     </p>
                 </div>
 
@@ -378,7 +377,7 @@
                         All Services (12)
                     </button>
                     <button onclick="filterServiceCards('Excel & Data Solutions')" data-filter="Excel & Data Solutions" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
-                        <i data-lucide="sheet" class="w-4 h-4 text-emerald-400"></i> Excel & Data Work
+                        <i data-lucide="sheet" class="w-4 h-4 text-emerald-400"></i> Excel & Data
                     </button>
                     <button onclick="filterServiceCards('Web Development')" data-filter="Web Development" class="service-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center gap-1.5">
                         <i data-lucide="globe" class="w-4 h-4 text-indigo-400"></i> Web Development
@@ -510,7 +509,7 @@
                             </div>
 
                             <button onclick="applyEstimateToForm()" class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 transition-all">
-                                <span>Proceed With This Estimate</span>
+                                <span>Is Estimate Se Aage Badhein</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -578,7 +577,7 @@
                                 <input type="radio" name="serviceCategory" value="Excel & Data Solutions" onchange="updateSubTasksUI('Excel & Data Solutions')" checked class="peer sr-only">
                                 <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 transition-all text-center h-full flex flex-col items-center justify-center gap-1.5">
                                     <i data-lucide="sheet" class="w-6 h-6 text-emerald-400"></i>
-                                    <span class="text-xs sm:text-sm font-bold text-white">Excel & Data Work</span>
+                                    <span class="text-xs sm:text-sm font-bold text-white">Excel & Data</span>
                                     <span class="text-[11px] text-slate-400">Cleaning, Formulas, Pivot</span>
                                 </div>
                             </label>
@@ -613,8 +612,8 @@
 
                         <!-- Dynamic Sub-Tasks Checkboxes -->
                         <div class="float-field bg-slate-900/70 rounded-2xl p-4 border border-slate-800">
-                            <label id="subTaskHeading" class="block text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3">
-                                What needs to be done in Excel & Data Solutions? (Check all that apply):
+                            <label id="subTaskHeading" class="block text-sm font-semibold text-indigo-300 mb-3">
+                                Kya-kya karwana hai? <span class="font-normal text-slate-400">(ek se zyada chun sakte hain)</span>
                             </label>
                             <div id="dynamicSubTasksContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                 <!-- Populated via JS -->
@@ -624,12 +623,12 @@
 
                     <!-- STEP 3: WORK DESCRIPTION, BUDGET & DEADLINE -->
                     <div>
-                        <div class="float-field flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+                        <div class="float-field mb-4 pb-2 border-b border-slate-800">
                             <div class="flex items-center gap-2.5">
                                 <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">3</span>
                                 <h3 class="font-display font-bold text-lg text-white">Work Details & Instructions</h3>
                             </div>
-                            <span class="text-xs text-slate-400">Write in English, Hindi, or Hinglish</span>
+                            <p class="text-xs text-slate-400 mt-1 ml-8">English, Hindi ya Hinglish, kisi bhi bhasha mein likhein</p>
                         </div>
 
                         <div class="space-y-4">
@@ -649,12 +648,12 @@
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="float-field fl-wrap">
                                     <select id="projectBudget" class="fl-input w-full px-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-indigo-500">
-                                        <option value="₹299 - ₹700 (Quick Task / Excel / Basic Design)">₹299 - ₹700 (Quick Task / Excel / Basic Design)</option>
-                                        <option value="₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)">₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)</option>
-                                        <option value="₹2,000 - ₹5,000 (Landing Page / Complex Automation)">₹2,000 - ₹5,000 (Landing Page / Complex Automation)</option>
-                                        <option value="₹5,000 - ₹15,000 (Full Business Website / Web Portal)">₹5,000 - ₹15,000 (Full Business Website / Web Portal)</option>
-                                        <option value="₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)">₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)</option>
-                                        <option value="Need Quote After Review">Not Sure — Give me best quote after checking</option>
+                                        <option value="₹299 - ₹700 (Quick Task / Excel / Basic Design)">₹299 – ₹700 · Chhota kaam</option>
+                                        <option value="₹700 - ₹2,000 (Advanced Excel / Pro Logo Kit)">₹700 – ₹2,000 · Advanced Excel / Logo</option>
+                                        <option value="₹2,000 - ₹5,000 (Landing Page / Complex Automation)">₹2,000 – ₹5,000 · Landing page / Automation</option>
+                                        <option value="₹5,000 - ₹15,000 (Full Business Website / Web Portal)">₹5,000 – ₹15,000 · Business website</option>
+                                        <option value="₹15,000 - ₹40,000+ (Mobile App / E-Commerce Platform)">₹15,000 – ₹40,000+ · App / E-commerce</option>
+                                        <option value="Need Quote After Review">Pata nahi · Best quote dijiye</option>
                                     </select>
                                     <label for="projectBudget" class="fl-label fl-fixed">Your Estimated Budget (₹ INR) *</label>
                                 </div>
@@ -691,7 +690,7 @@
                     <div class="float-field pt-2">
                         <button type="submit" id="projectSubmitBtn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-display font-bold text-base sm:text-lg shadow-xl shadow-indigo-600/25 flex items-center justify-center gap-2.5 transition-all">
                             <i data-lucide="check-circle" class="w-5 h-5"></i>
-                            <span>Submit Work Requirement Now</span>
+                            <span>Requirement Bhejein</span>
                         </button>
                         <p class="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1.5">
                             <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -929,20 +928,20 @@
             </div>
             <div>
                 <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Quick Links</h2>
-                <ul class="space-y-2">
-                    <li><a href="#services" class="hover:text-white">Services & Pricing</a></li>
-                    <li><a href="#estimator" class="hover:text-white">Cost Calculator</a></li>
-                    <li><a href="#post-work" class="hover:text-white">Submit Work</a></li>
-                    <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+                <ul class="space-y-1">
+                    <li><a href="#services" class="inline-block py-1.5 hover:text-white">Services & Pricing</a></li>
+                    <li><a href="#estimator" class="inline-block py-1.5 hover:text-white">Cost Calculator</a></li>
+                    <li><a href="#post-work" class="inline-block py-1.5 hover:text-white">Kaam Post Karein</a></li>
+                    <li><a href="#faq" class="inline-block py-1.5 hover:text-white">FAQ</a></li>
                 </ul>
             </div>
             <div>
                 <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Contact</h2>
-                <ul class="space-y-2">
-                    <li><a href="https://wa.me/917979010289" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-white"><i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>WhatsApp: +91 7979010289</a></li>
-                    <li><a href="tel:+917979010289" class="inline-flex items-center gap-2 hover:text-white"><i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>+91 7979010289</a></li>
-                    <li><a href="tel:+917050180714" class="inline-flex items-center gap-2 hover:text-white"><i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>+91 7050180714</a></li>
-                    <li><a href="mailto:sronetechai06@gmail.com" class="inline-flex items-center gap-2 hover:text-white break-all"><i data-lucide="mail" class="w-4 h-4 text-indigo-400 shrink-0"></i>sronetechai06@gmail.com</a></li>
+                <ul class="space-y-1">
+                    <li><a href="https://wa.me/917979010289" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 py-1.5 hover:text-white"><i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>WhatsApp: +91 7979010289</a></li>
+                    <li><a href="tel:+917979010289" class="inline-flex items-center gap-2 py-1.5 hover:text-white"><i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>+91 7979010289</a></li>
+                    <li><a href="tel:+917050180714" class="inline-flex items-center gap-2 py-1.5 hover:text-white"><i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>+91 7050180714</a></li>
+                    <li><a href="mailto:sronetechai06@gmail.com" class="inline-flex items-center gap-2 py-1.5 hover:text-white break-all"><i data-lucide="mail" class="w-4 h-4 text-indigo-400 shrink-0"></i>sronetechai06@gmail.com</a></li>
                 </ul>
             </div>
         </div>
@@ -952,8 +951,8 @@
     </footer>
 
     <aside aria-label="WhatsApp chat">
-    <a href="https://wa.me/917979010289?text=Hi%20SROne%20Studio%2C%20mujhe%20ek%20kaam%20karwana%20hai" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp par chat karein" class="client-only fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-900/40 flex items-center justify-center">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <a href="https://wa.me/917979010289?text=Hi%20SROne%20Studio%2C%20mujhe%20ek%20kaam%20karwana%20hai" target="_blank" rel="noopener noreferrer" id="waFloat" aria-label="WhatsApp par chat karein" class="client-only fixed bottom-4 right-4 z-40 w-12 h-12 rounded-full transition-all duration-300 opacity-0 translate-y-4 pointer-events-none bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-900/40 flex items-center justify-center">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
     </aside>
 
@@ -1312,7 +1311,7 @@
                                 </div>
                             </div>
                             <button onclick="selectServiceAndScroll('${item.category}', '${item.subTaskPreselect}', '${item.title}')" class="px-4 py-2.5 rounded-xl text-xs font-bold ${c.btn} shadow transition-all flex items-center gap-1.5">
-                                <span>Post Work</span>
+                                <span>Chunein</span>
                                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
@@ -1338,7 +1337,8 @@
         function updateSubTasksUI(category, precheckedTask = null) {
             const heading = document.getElementById('subTaskHeading');
             const container = document.getElementById('dynamicSubTasksContainer');
-            heading.textContent = `What needs to be done in ${category}? (Select all that apply):`;
+            heading.innerHTML = 'Kya-kya karwana hai? <span class="font-normal text-slate-400">(ek se zyada chun sakte hain)</span>';
+            applyCategoryDeadline(category);
 
             const tasks = CATEGORY_SUBTASKS[category] || CATEGORY_SUBTASKS['Excel & Data Solutions'];
             container.innerHTML = tasks.map((task, idx) => {
@@ -1407,13 +1407,27 @@
             }
         }
 
+        let appliedEstimate = null;
+        const BUDGET_STEPS = [700, 2000, 5000, 15000, Infinity];
+        const SPEED_DAYS = { '1': null, '1.25': 2, '1.5': 1 };
+
         function applyEstimateToForm() {
             const checks = document.querySelectorAll('.calc-check:checked');
             if (checks.length > 0) {
                 const firstCat = checks[0].getAttribute('data-cat');
                 const names = Array.from(checks).map(c => c.getAttribute('data-name')).join(' + ');
+                const urgency = document.querySelector('input[name="calcUrgency"]:checked');
+                const speed = urgency ? urgency.nextElementSibling.querySelector('div').textContent.trim() : 'Standard';
+                const total = Array.from(checks).reduce((t, c) => t + parseInt(c.value, 10), 0) * (urgency ? parseFloat(urgency.value) : 1);
+                appliedEstimate = { total: Math.round(total), speed, items: names };
                 QuickSelectService(firstCat);
                 document.getElementById('projectTitle').value = names;
+                const budget = document.getElementById('projectBudget');
+                budget.selectedIndex = BUDGET_STEPS.findIndex(max => total <= max);
+                const days = urgency && SPEED_DAYS[urgency.value];
+                if (days) setDeadlineInDays(days);
+                const desc = document.getElementById('projectDescription');
+                if (!desc.value.trim()) desc.value = `Calculator estimate: ₹${appliedEstimate.total.toLocaleString('en-IN')} (${speed} delivery).\n`;
             } else {
                 document.getElementById('post-work').scrollIntoView({ behavior: 'smooth' });
             }
@@ -1508,6 +1522,7 @@
                 description,
                 budget,
                 deadline,
+                estimate: appliedEstimate,
                 files: selectedAttachmentFiles.length ? [...selectedAttachmentFiles] : ['No file attached'],
                 status: 'New Request',
                 createdAt: 'Just now'
@@ -1615,7 +1630,7 @@
             const showClient = mode === 'client' || mode === 'both';
             adminContainer.classList.toggle('hidden', !showAdmin);
             clientContainer.classList.toggle('hidden', !showClient);
-            clientNav.classList.toggle('md:hidden', !showClient);
+            clientNav.classList.toggle('lg:hidden', !showClient);
 
             ['both', 'client', 'admin'].forEach((m) => {
                 const btn = document.getElementById('btn' + m.charAt(0).toUpperCase() + m.slice(1) + 'Mode');
@@ -1826,10 +1841,52 @@
             document.body.removeChild(link);
         }
 
-        function setDefaultDeadlineDate() {
+        const CATEGORY_DEADLINE_DAYS = { 'Excel & Data Solutions': 2, 'Web Development': 7, 'App Development': 14, 'Logo Design & Branding': 3 };
+        let deadlineTouched = false;
+
+        function localDateStr(d) {
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function setDeadlineInDays(days) {
             const d = new Date();
-            d.setDate(d.getDate() + 3);
-            document.getElementById('projectDeadline').value = d.toISOString().split('T')[0];
+            d.setDate(d.getDate() + days);
+            document.getElementById('projectDeadline').value = localDateStr(d);
+        }
+
+        function applyCategoryDeadline(category) {
+            if (!deadlineTouched) setDeadlineInDays(CATEGORY_DEADLINE_DAYS[category] || 3);
+        }
+
+        function setDefaultDeadlineDate() {
+            const input = document.getElementById('projectDeadline');
+            input.min = localDateStr(new Date());
+            input.onchange = () => { deadlineTouched = true; };
+            deadlineTouched = false;
+            appliedEstimate = null;
+            const cat = document.querySelector('input[name="serviceCategory"]:checked');
+            applyCategoryDeadline(cat ? cat.value : 'Excel & Data Solutions');
+        }
+
+        function initWhatsAppFloat() {
+            const btn = document.getElementById('waFloat');
+            const hiders = [document.getElementById('post-work'), document.querySelector('footer')].filter(Boolean);
+            const visible = new Set();
+            const update = () => {
+                const show = window.scrollY > 500 && visible.size === 0;
+                btn.classList.toggle('opacity-0', !show);
+                btn.classList.toggle('translate-y-4', !show);
+                btn.classList.toggle('pointer-events-none', !show);
+            };
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((e) => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target));
+                    update();
+                });
+                hiders.forEach((el) => io.observe(el));
+            }
+            window.addEventListener('scroll', update, { passive: true });
+            update();
         }
 
         // Initialize on Window Load
@@ -1871,8 +1928,8 @@
             document.getElementById('categoryOffersBar').innerHTML = CATEGORY_OFFERS.map(o => `
                 <button type="button" onclick="selectOfferCategory('${o.category}')" class="offer-chip flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-1.5 sm:px-3 py-1.5 rounded-xl border ${OFFER_CHIP_COLORS[o.color]} transition-colors">
                     <i data-lucide="${o.icon}" class="w-4 h-4 shrink-0"></i>
-                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight">${o.label}</span>
-                    <span class="text-[10px] sm:text-[11px] font-semibold leading-tight">${startingPrice(o.category)} se shuru</span>
+                    <span class="text-[11px] sm:text-xs font-bold text-white leading-tight whitespace-nowrap">${o.label}</span>
+                    <span class="text-[10px] sm:text-[11px] font-semibold leading-tight whitespace-nowrap">${startingPrice(o.category)}<span class="hidden lg:inline"> se shuru</span></span>
                 </button>`).join('');
         }
 
@@ -1907,6 +1964,7 @@
             renderCategoryOffers();
             renderHeroPrices();
             initFloatingForm();
+            initWhatsAppFloat();
             updateAdminBadge();
             if (adminAuthenticated) {
                 document.getElementById('modeSwitcher').classList.replace('hidden', 'flex');
